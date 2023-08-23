@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Latest Data </title>
+<style> 
+table{
+    font-family: arial, sans-serif;
+    border-collapse:collapse;
+    width:100%;
+}
+td,th{
+    border:1px solid #5951e9;
+    text-align:left;
+    padding:8px;
+}
+tr:nth-child(even){
+    background-color:#c8ebef;
+}
+</style>
+</head>
+<body>
+    <h1>Latest Update At &#129327;</h1>
+    <!-- <p>[{{latest_date_time}}]</p> -->
+    {% if all_sensor_data %} 
+    <table>
+        <thead>
+            <tr>
+                <th>Sensor UID</th>
+                <th>Value</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in all_sensor_data %}
+            <tr>
+                <td>{{ data.sensor_uid }}</td>
+                <td>{{ data.value }}</td>
+                <td>{{ data.timestamp }}</td> 
+                <!-- <td>{{formatted_timestamp}}</td> -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No data available.</p> 
+    {% endif %}
+    <!-- 
+    <a href="/">Show All Data</a> 
+    <p> </p>
+    {% for data in all_sensor_data %}
+        <a href="/{{ data.sensor_uid }}">Show Data for {{ data.sensor_uid }}</a><br>
+    {% endfor %}
+    -->
+</body>
+</html>
