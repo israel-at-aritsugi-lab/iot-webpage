@@ -1,6 +1,6 @@
 from flask import Flask
 from views import views
-# Some changes
+
 
 #app=Flask(__name__)
 app=Flask(__name__, template_folder='templates')  ##
