@@ -27,4 +27,4 @@ def display_sensor_data(sensor_uid):
     sensor_data = db.get_sensor_data_by_uid(sensor_uid)
     return render_template('index.html', all_sensor_data=[sensor_data])
 
-##
+## another comment
