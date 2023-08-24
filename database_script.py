@@ -57,6 +57,11 @@ class Database:  ##
          sensor_data=sensorData.objects(sensor_uid=sensor_uid).order_by('-timestamp').first()
          return sensor_data
 
+    def get_all_data_for_sensor(self,sensor_uid):  ##
+         all_data_for_sensor=sensorData.objects(sensor_uid=sensor_uid).order_by('-timestamp')
+         return all_data_for_sensor
+
+
     #def get_latest_sensor_data(self):
     #    latest_sensor_data=self.db_instance.retrieve_dummy_data()
     #    return latest_sensor_data

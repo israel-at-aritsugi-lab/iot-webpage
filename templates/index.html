@@ -36,7 +36,8 @@ tr:nth-child(even){
         <tbody>
             {% for data in all_sensor_data %}
             <tr>
-                <td>{{ data.sensor_uid }}</td>
+                <td><a href="/iot/{{ data.sensor_uid }}">{{ data.sensor_uid }}</a></td>
+                <!-- <td>{{ data.sensor_uid }}</td> -->
                 <td>{{ data.value }}</td>
                 <td>{{ data.timestamp }}</td> 
                 <!-- <td>{{formatted_timestamp}}</td> -->
@@ -47,6 +48,14 @@ tr:nth-child(even){
     {% else %}
     <p>No data available.</p> 
     {% endif %}
+
+    <h2>Show Specific Sensor Data</h2>
+    <p>Please select a sensor UID to show its data:</p>
+    <ul>
+        {% for data in all_sensor_data %}
+        <li><a href="/iot/show_all_data/{{data.sensor_uid}}">Show data for {{data.sensor_uid}}</a></li>
+        {% endfor %}
+    </ul>
     <!-- 
     <a href="/">Show All Data</a> 
     <p> </p>
