@@ -22,7 +22,7 @@ tr:nth-child(even){
 </style>
 </head>
 <body>
-    <h1>Latest Update At &#129327;</h1>
+    <h1>Latest Update At &#127793;</h1>
     <!-- <p>[{{latest_date_time}}]</p> -->
     {% if all_sensor_data %} 
     <table>
@@ -36,7 +36,7 @@ tr:nth-child(even){
         <tbody>
             {% for data in all_sensor_data %}
             <tr>
-                <td><a href="/iot/{{ data.sensor_uid }}">{{ data.sensor_uid }}</a></td>
+                <td><a href="/iot/show_all_data/{{ data.sensor_uid }}">{{ data.sensor_uid }}</a></td>
                 <!-- <td>{{ data.sensor_uid }}</td> -->
                 <td>{{ data.value }}</td>
                 <td>{{ data.timestamp }}</td> 
@@ -49,13 +49,30 @@ tr:nth-child(even){
     <p>No data available.</p> 
     {% endif %}
 
-    <h2>Show Specific Sensor Data</h2>
+    <h2>Show Specific Sensor Latest Data &#9961;</h2>
     <p>Please select a sensor UID to show its data:</p>
+
+    <!--
+    <p>Debug:</p>
+    <ul>
+    {% for data in all_data %}
+    <li>
+        Sensor UID: {{ data.sensor_uid }}<br>
+        Value: {{ data.value }}<br>
+        Timestamp: {{ data.timestamp }}
+    </li>
+    {% endfor %}
+    </ul>
+    -->
+    
+    <p>Debug: {{ all_data}}</p>
     <ul>
         {% for data in all_sensor_data %}
-        <li><a href="/iot/show_all_data/{{data.sensor_uid}}">Show data for {{data.sensor_uid}}</a></li>
+        <li><a href="/iot/{{data.sensor_uid}}">{{data.sensor_uid}}</a></li>
         {% endfor %}
     </ul>
+
+
     <!-- 
     <a href="/">Show All Data</a> 
     <p> </p>
