@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IoT Latest Data </title>
+    <title>IoT All Data </title>
     <style> 
         body {
             font-family: Arial, sans-serif;
@@ -18,7 +18,7 @@
             height: 100vh;
         }
         h1 {
-            font-size: 34px;
+            font-size: 30px;
             margin-bottom: 20px;
         }
         .data-entry {
@@ -28,7 +28,7 @@
             padding: 10px;
             margin-bottom: 10px;
             width: 25%;
-            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
         }
         .sensor-uid {
             font-weight: bold;
@@ -39,6 +39,11 @@
         .timestamp {
             font-size: 12px;
             color: #777;
+        }
+        .back-button{
+            position: absolute;
+            bottom: 40px;
+            right: 30px;
         }
     </style>
 </head>
@@ -55,5 +60,8 @@
     {% else %}
         <p>No data available.</p> 
     {% endif %}
+    <div class="back-button">
+        <a href="/iot">Back to Homepage</a>
+    </div>
 </body>
 </html>

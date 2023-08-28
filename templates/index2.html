@@ -28,6 +28,11 @@
             text-align: normal;
             margin-top: 20px;
         }
+        .back-button{
+            position: absolute;
+            bottom: 40px;
+            right: 30px;
+        }
     </style>
 </head>
 <body>
@@ -46,5 +51,8 @@
     {% else %}
     <p>No data available.</p>
     {% endif %}
+    <div class="back-button">
+        <a href="/iot">Back to Homepage</a>
+    </div>
 </body>
 </html>

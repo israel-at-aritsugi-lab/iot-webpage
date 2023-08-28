@@ -35,9 +35,7 @@ def display_sensor_data(sensor_uid):
 #display all data for specifc sensor
 @views.route('/all/<string:sensor_uid>')  ##
 def display_all_data(sensor_uid):
-    print("The sensor id is", sensor_uid)
     db=Database(db_instance)
     all_data_for_sensor=db.get_all_data_for_sensor(sensor_uid)
-    print("all data for sensor",all_data_for_sensor)
     return render_template('index3.html',all_sensor_data=all_data_for_sensor)
    
