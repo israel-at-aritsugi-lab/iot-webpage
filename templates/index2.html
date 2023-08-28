@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Latest Data</title>
+    <style> 
+        .data-container {
+            display: flex;
+            flex-direction: column;
+            align-items: normal;
+            margin-top: 10px;
+        }
+        
+        .sensor-data {
+            border: 1spx solid #1c5c05;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+            width: 500px;
+            text-align: normal;
+            background-color: #9ce793;
+        }
+        
+        h1 {
+            text-align: normal;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>&#127806; Latest Data For Specific Sensor &#127806;</h1>
+    
+    {% if all_sensor_data %}
+    <div class="data-container">
+        {% for data in all_sensor_data %}
+        <div class="sensor-data">
+            <p><strong>Sensor UID:</strong> <a href="/iot/all/{{data.sensor_uid}}">{{ data.sensor_uid }}</a></p>
+            <p><strong>Value:</strong> {{ data.value }}</p>
+            <p><strong>Timestamp:</strong> {{ data.timestamp }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No data available.</p>
+    {% endif %}
+</body>
+</html>
