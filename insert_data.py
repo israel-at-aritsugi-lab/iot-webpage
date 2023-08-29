@@ -36,7 +36,6 @@ def generate_dummy_data():
         sensorData(sensor_uid="20104", value=21.55, timestamp=datetime.datetime(2022, 5, 31, 13, 0)),
         sensorData(sensor_uid="20104", value=19.33, timestamp=datetime.datetime(2022, 8, 20, 10, 0))
     ]
-    #db_instance.insert(data_insert)
     return data_insert
 
 def insert_dummy_data(db_instance,data_insert):
