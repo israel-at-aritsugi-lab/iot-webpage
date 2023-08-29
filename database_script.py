@@ -55,17 +55,14 @@ class Database:  ##
         #all_sensor_data = sensorData.objects().order_by('-timestamp').limit(7)
         #return all_sensor_data
         all_sensor_data = []
-
         distinct_sensor_uids = sensorData.objects().distinct("sensor_uid")
-
         for sensor_uid in distinct_sensor_uids:
             latest_data = self.get_sensor_data_by_uid(sensor_uid)
             if latest_data:
                 all_sensor_data.append(latest_data)
-
         return all_sensor_data
         
-        
+
     def get_sensor_data_by_uid(self,sensor_uid):  ##
          sensor_data=sensorData.objects(sensor_uid=sensor_uid).order_by('-timestamp').first()
          return sensor_data
