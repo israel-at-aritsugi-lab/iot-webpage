@@ -7,6 +7,7 @@ class sensorData(mongoengine.Document):
     value = mongoengine.FloatField()
     timestamp = mongoengine.DateTimeField()
 
+"""
 def insert_dummy_data(db):
     data_insert = [
         sensorData(sensor_uid="10103", value=20.75, timestamp=datetime.datetime(2023, 8, 23, 18, 0)),  #10103-> 20.75
@@ -30,6 +31,7 @@ def insert_dummy_data(db):
         sensorData(sensor_uid="40101", value=41.25, timestamp=datetime.datetime(2022, 3, 13, 11, 0))
     ]
     db.insert(data_insert)
+"""
 
 def retrieve_dummy_data(db): ##
     data_retrieved = db.find()
@@ -50,9 +52,9 @@ class Database:  ##
         self.db_instance=db_instance
 
     def get_all_sensor_data(self):
-        all_sensor_data = sensorData.objects().order_by('-timestamp').limit(6)
+        all_sensor_data = sensorData.objects().order_by('-timestamp').limit(7)
         return all_sensor_data
-    
+        
     def get_sensor_data_by_uid(self,sensor_uid):  ##
          sensor_data=sensorData.objects(sensor_uid=sensor_uid).order_by('-timestamp').first()
          return sensor_data
@@ -77,7 +79,7 @@ if __name__ == "__main__":
     db=Database(db_instance)  ##
 
     print("I am running!")
-    insert_dummy_data(db_instance) 
+    #insert_dummy_data(db_instance) 
     retrieve_dummy_data(db_instance)  
 
     db_instance.disconnect()
