@@ -25,12 +25,13 @@ def index():
 
 
 #display the latest data for specific sensor
+"""
 @views.route('/<string:sensor_uid>')  ##
 def display_sensor_data(sensor_uid):
     db = Database(db_instance)
     sensor_data = db.get_sensor_data_by_uid(sensor_uid)
     return render_template('index2.html', all_sensor_data=[sensor_data])
-
+"""
 
 #display all data for specifc sensor
 @views.route('/all/<string:sensor_uid>')  ##

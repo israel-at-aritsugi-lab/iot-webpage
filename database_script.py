@@ -62,10 +62,11 @@ class Database:  ##
                 all_sensor_data.append(latest_data)
         return all_sensor_data
         
-
+    
     def get_sensor_data_by_uid(self,sensor_uid):  ##
          sensor_data=sensorData.objects(sensor_uid=sensor_uid).order_by('-timestamp').first()
          return sensor_data
+    
 
     def get_all_data_for_sensor(self,sensor_uid):  ##
          all_data_for_sensor=sensorData.objects(sensor_uid=sensor_uid).order_by('-timestamp')

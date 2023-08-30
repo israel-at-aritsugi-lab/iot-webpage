@@ -1,6 +1,7 @@
 from angelinedb import database
 import mongoengine
 import datetime
+import random
 
 class sensorData(mongoengine.Document):
     sensor_uid = mongoengine.StringField()
@@ -10,7 +11,22 @@ class sensorData(mongoengine.Document):
 def clean_database():
     sensorData.objects().delete()
 
-def generate_dummy_data():
+def generate_dummy_data(num_entries):
+    data_insert=[]
+    for x in range(num_entries):
+        ranges=[
+            range(10100,10109),
+            range(20100,20109),
+            range(10200,10211),
+            range(40100,40109)
+        ]
+        random_sensor_uid=random.choice(random.choice(ranges))  #random element in a given range
+        random_value=round(random.uniform(0,99),2)  #float in a given range
+        random_timestamp=datetime.datetime(2023,8,random.randint(1,31),random.randint(0,23),random.randint(0,59))  #int in a given range
+        data_insert.append(sensorData(sensor_uid=str(random_sensor_uid), value=random_value, timestamp=random_timestamp))
+    return data_insert
+
+    """
     data_insert = [
         sensorData(sensor_uid="10103", value=20.75, timestamp=datetime.datetime(2023, 8, 23, 18, 0)),  #10103-> 20.75
         sensorData(sensor_uid="10103", value=44.44, timestamp=datetime.datetime(2022, 6, 11, 12, 0)),  
@@ -36,7 +52,8 @@ def generate_dummy_data():
         sensorData(sensor_uid="20104", value=21.55, timestamp=datetime.datetime(2022, 5, 31, 13, 0)),
         sensorData(sensor_uid="20104", value=19.33, timestamp=datetime.datetime(2022, 8, 20, 10, 0))
     ]
-    return data_insert
+    """
+    
 
 def insert_dummy_data(db_instance,data_insert):
     db_instance.insert(data_insert)
@@ -46,7 +63,7 @@ if __name__ == "__main__":
     db_instance.connect()
 
     clean_database()
-    new_data=generate_dummy_data()
+    new_data=generate_dummy_data(400)
     insert_dummy_data(db_instance,new_data)
 
     db_instance.disconnect()
