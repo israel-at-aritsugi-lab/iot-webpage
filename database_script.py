@@ -7,32 +7,6 @@ class sensorData(mongoengine.Document):
     value = mongoengine.FloatField()
     timestamp = mongoengine.DateTimeField()
 
-"""
-def insert_dummy_data(db):
-    data_insert = [
-        sensorData(sensor_uid="10103", value=20.75, timestamp=datetime.datetime(2023, 8, 23, 18, 0)),  #10103-> 20.75
-        sensorData(sensor_uid="10103", value=44.44, timestamp=datetime.datetime(2022, 6, 11, 12, 0)),  
-
-        sensorData(sensor_uid="20102", value=10.25, timestamp=datetime.datetime(2023, 7, 23, 11, 0)),  #20102-> 10.25
-        sensorData(sensor_uid="20102", value=21.55, timestamp=datetime.datetime(2022, 5, 31, 13, 0)),
-        sensorData(sensor_uid="20102", value=19.33, timestamp=datetime.datetime(2022, 8, 20, 10, 0)),
-
-        sensorData(sensor_uid="10201", value=19.13, timestamp=datetime.datetime(2023, 8, 23, 14, 0)),  #10201-> 19.13
-        sensorData(sensor_uid="10201", value=4.75, timestamp=datetime.datetime(2023, 8, 23, 12, 0)),
-
-        sensorData(sensor_uid="40104", value=4.35, timestamp=datetime.datetime(2023, 8, 23, 15, 0)),  #40104-> 4.35
-        sensorData(sensor_uid="40104", value=3.50, timestamp=datetime.datetime(2022, 8, 23, 12, 0)),
-
-        sensorData(sensor_uid="10102", value=15.95, timestamp=datetime.datetime(2023, 8, 23, 16, 0)),  #10102-> 15.95
-        sensorData(sensor_uid="10102", value=18.71, timestamp=datetime.datetime(2023, 8, 23, 10, 0)),
-
-        sensorData(sensor_uid="40101", value=30.15, timestamp=datetime.datetime(2023, 8, 23, 17, 0)),  #40101-> 30.15
-        sensorData(sensor_uid="40101", value=29.52, timestamp=datetime.datetime(2023, 8, 22, 12, 0)),
-        sensorData(sensor_uid="40101", value=41.25, timestamp=datetime.datetime(2022, 3, 13, 11, 0))
-    ]
-    db.insert(data_insert)
-"""
-
 def retrieve_dummy_data(db): ##
     data_retrieved = db.find()
     #unique_data=set() ##

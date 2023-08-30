@@ -41,9 +41,11 @@
             color: #777;
         }
         .back-button{
-            position: absolute;
-            bottom: 40px;
+            position: fixed;
+            bottom: 20px;
             right: 30px;
+            font-size: 20px;
+            
         }
     </style>
 </head>
@@ -60,6 +62,7 @@
     {% else %}
         <p>No data available.</p> 
     {% endif %}
+    
     <div class="back-button">
         <a href="/iot">Back to Homepage</a>
     </div>

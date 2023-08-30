@@ -15,14 +15,14 @@ def generate_dummy_data(num_entries):
     data_insert=[]
     for x in range(num_entries):
         ranges=[
-            range(10100,10109),
-            range(20100,20109),
-            range(10200,10211),
-            range(40100,40109)
+            range(10101,10109),
+            range(20101,20109),
+            range(10201,10211),
+            range(40101,40109)
         ]
         random_sensor_uid=random.choice(random.choice(ranges))  #random element in a given range
         random_value=round(random.uniform(0,99),2)  #float in a given range
-        random_timestamp=datetime.datetime(2023,8,random.randint(1,31),random.randint(0,23),random.randint(0,59))  #int in a given range
+        random_timestamp=datetime.datetime(2023,8,random.randint(1,31),random.randint(0,23),random.randint(0,59),random.randint(0,59))  #int in a given range
         data_insert.append(sensorData(sensor_uid=str(random_sensor_uid), value=random_value, timestamp=random_timestamp))
     return data_insert
 
