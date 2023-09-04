@@ -8,7 +8,7 @@ class sensorData(mongoengine.Document):
     value = mongoengine.FloatField()
     timestamp = mongoengine.DateTimeField()
 
-def retrieve_dummy_data(db): ##
+def retrieve_dummy_data(db): 
     data_retrieved = db.find()
     #unique_data=set() ##
     for data in data_retrieved:
@@ -22,7 +22,7 @@ def retrieve_dummy_data(db): ##
             #print("timestamp:",formatted_timestamp)  ##
             print()
 
-class Database:  ##
+class Database:  
     def __init__(self,db_instance):
         self.db_instance=db_instance
 
@@ -38,12 +38,12 @@ class Database:  ##
         return all_sensor_data
         
     
-    def get_sensor_data_by_uid(self,sensor_uid):  ##
+    def get_sensor_data_by_uid(self,sensor_uid):  
          sensor_data=sensorData.objects(sensor_uid=sensor_uid).order_by('-timestamp').first()
          return sensor_data
     
 
-    def get_all_data_for_sensor(self,sensor_uid):  ##
+    def get_all_data_for_sensor(self,sensor_uid):  
          all_data_for_sensor=sensorData.objects(sensor_uid=sensor_uid).order_by('-timestamp')
          return all_data_for_sensor
     
