@@ -23,32 +23,33 @@ tr:nth-child(even){
 </head>
 <body>
     <h1>&#127793; Latest Data For All Sensors &#127793;</h1>
-    <!-- <p>[{{latest_date_time}}]</p> -->
-    {% if all_sensor_data %} 
+    {% if all_sensor_data %}
     <table>
         <thead>
             <tr>
                 <th>Sensor UID</th>
                 <th>Value</th>
                 <th>Timestamp</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
             {% for data in all_sensor_data %}
             <tr>
                 <td><a href="/iot/all/{{data.sensor_uid}}">{{ data.sensor_uid }}</a></td>
-                <!-- <td>{{ data.sensor_uid }}</td> -->
                 <td>{{ data.value }}</td>
                 <td>{{ data.timestamp }}</td> 
-                <!-- <td>{{formatted_timestamp}}</td> -->
+                <td>{{ sensor_status[data.sensor_uid] }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
     {% else %}
     <p>No data available.</p> 
-    {% endif %}
+    {% endif %} 
 
+</body>
+</html>
 
 <!--
     <h2>------ Show Latest Data For Specific Sensor  ------</h2>
@@ -69,5 +70,3 @@ tr:nth-child(even){
         <a href="/{{ data.sensor_uid }}">Show Data for {{ data.sensor_uid }}</a><br>
     {% endfor %}
 -->
-</body>
-</html>
