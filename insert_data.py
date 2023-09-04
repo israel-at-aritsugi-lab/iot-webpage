@@ -22,10 +22,11 @@ def generate_dummy_data(num_entries):
             range(40101,40109)
         ]
         random_sensor_uid=random.choice(random.choice(ranges))  #random element in a given range
-        random_value=round(random.uniform(0,99),2)  #float in a given range
-        random_timestamp=datetime.datetime(2023,8,random.randint(1,31),random.randint(0,23),random.randint(0,59),random.randint(0,59))  #int in a given range
+        random_value=round(random.uniform(0,99),2)   #float in a given range
+        random_timestamp=datetime.datetime(2023,9,random.randint(1,3),random.randint(0,23),random.randint(0,59),random.randint(0,59))  #int in a given range
         data_insert.append(sensorData(sensor_uid=str(random_sensor_uid), value=random_value, timestamp=random_timestamp))
     return data_insert
+
 """
 def generate_random_timestamp(start_date,end_date):
     time_diff = (end_date - start_date).total_seconds()

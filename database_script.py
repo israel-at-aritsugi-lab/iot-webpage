@@ -70,11 +70,11 @@ class Database:  ##
         if latest_data:
             current_time = datetime.now()
             if (current_time - latest_data.timestamp).days > max_days_no_data:
-                status = 'No Data'
+                status = 'Not Working Well !!!'
             else:
                 status = 'OK'
         else:
-            status = 'No Data'
+            status = 'Not Working Well !!!'
 
         return status
          
