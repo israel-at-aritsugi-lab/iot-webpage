@@ -20,6 +20,41 @@ tr:nth-child(even){
     background-color:#8ad79b;
 }
 </style>
+<script>
+    
+    function callAllert(sensor_uid) {
+        alert(`Hi from Javascript ${sensor_uid}`);
+    }
+    
+/*
+    function giveStatus(timestamp) {
+        const isProblematic = timestamp < 10;
+        if (isProblematic) {
+            return "Not Working well !!"
+        } else {
+            return "OK"
+        }        
+    }
+*/
+    function giveStatus(id,timestamp){
+        var dataTime=new Date (timestamp);
+        var currentTime=new Date();
+        //var timeDiff=dataTime.getDate()-currentTime.getDate();
+        var timeDiff = (dataTime - currentTime) / (1000 * 60 * 60 * 24);
+        var showStatus;        
+
+        if (timeDiff>2){
+            document.getElementById(id).innerHTML="Not Working Well !!!"
+            //showStatus="Not Working Well !!!"
+        }
+        else{
+            document.getElementById(id).innerHTML="OK"
+            //showStatus="OK"
+        }
+        //return showStatus
+    }
+
+</script>
 </head>
 <body>
     <h1>&#127793; Latest Data For All Sensors &#127793;</h1>
@@ -31,6 +66,7 @@ tr:nth-child(even){
                 <th>Value</th>
                 <th>Timestamp</th>
                 <th>Status</th>
+                <th>JS status</th>
             </tr>
         </thead>
         <tbody>
@@ -40,6 +76,11 @@ tr:nth-child(even){
                 <td>{{ data.value }}</td>
                 <td>{{ data.timestamp }}</td> 
                 <td>{{ sensor_status[data.sensor_uid] }}</td>
+                <!-- <td><button onclick="callAllert('{{data.timestamp}}')">alert button</button></td> -->
+                <!-- <td><button onclick="giveStatus('{{data.timestamp}}')">alert button</button> </td>  -->
+                <!-- <td><button onclick="giveStatus('{{data.timestamp}}')">alert button</button> </td>  -->
+                <td><button onclick="giveStatus('{{data.sensor_uid}}', '{{data.timestamp}}')">alert button</button></td>
+
             </tr>
             {% endfor %}
         </tbody>
