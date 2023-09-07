@@ -64,7 +64,7 @@ class Database:
              return "insufficient data"
     """
 
-    def check_sensor_status(self, sensor_uid, max_days_no_data=2):
+    def check_sensor_status(self, sensor_uid, max_days_no_data=1.5):
         latest_data = self.get_sensor_data_by_uid(sensor_uid)
 
         if latest_data:

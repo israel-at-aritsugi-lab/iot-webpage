@@ -37,24 +37,41 @@ tr:nth-child(even){
     }
 */
     function giveStatus(id,timestamp){
+        var element=document.getElementById(id+'_status');
+        
         var dataTime=new Date (timestamp);
         var currentTime=new Date();
         //var timeDiff=dataTime.getDate()-currentTime.getDate();
-        var timeDiff = (dataTime - currentTime) / (1000 * 60 * 60 * 24);
-        var showStatus;        
+        var timeDiff = (currentTime-dataTime) / (1000 * 60 * 60 * 24); //make sure is currentTime-dataTime to avoid negative value
+        //var showStatus;      
+        
+        //for testing purpose
+        console.log('Timestamp:', timestamp);
+        console.log('Data Time:', dataTime);
+        console.log('Current Time:', currentTime);
+        console.log('Time Difference (days):', timeDiff);
 
         if (timeDiff>2){
-            document.getElementById(id).innerHTML="Not Working Well !!!"
+            element.innerHTML="Not Working Well !!!";
+            //document.getElementById(id).innerHTML="Not Working Well !!!"
             //showStatus="Not Working Well !!!"
         }
         else{
-            document.getElementById(id).innerHTML="OK"
+            element.innerHTML="OK";
+            //showStatus="OK"
+            //document.getElementById(id).innerHTML="OK"
             //showStatus="OK"
         }
-        //return showStatus
+    }
+        
+    
+
+    function testingg(sensor_uid, timestamp) {
+        alert(`Hi from Javascript - Sensor UID: ${sensor_uid}, Timestamp: ${timestamp}`);
     }
 
 </script>
+
 </head>
 <body>
     <h1>&#127793; Latest Data For All Sensors &#127793;</h1>
@@ -72,15 +89,16 @@ tr:nth-child(even){
         <tbody>
             {% for data in all_sensor_data %}
             <tr>
-                <td><a href="/iot/all/{{data.sensor_uid}}">{{ data.sensor_uid }}</a></td>
+                <!-- <td><a href="/iot/all/{{data.sensor_uid}}" id="{{ data.sensor_uid }}_link">{{ data.sensor_uid }}</a></td> -->
+                <td><a href="/iot/all/{{data.sensor_uid}}" >{{ data.sensor_uid }}</a></td>
                 <td>{{ data.value }}</td>
                 <td>{{ data.timestamp }}</td> 
-                <td>{{ sensor_status[data.sensor_uid] }}</td>
+                <td>{{ sensor_status[data.sensor_uid] }}</td> 
+                <td id="{{ data.sensor_uid }}_status"></td> 
                 <!-- <td><button onclick="callAllert('{{data.timestamp}}')">alert button</button></td> -->
                 <!-- <td><button onclick="giveStatus('{{data.timestamp}}')">alert button</button> </td>  -->
                 <!-- <td><button onclick="giveStatus('{{data.timestamp}}')">alert button</button> </td>  -->
-                <td><button onclick="giveStatus('{{data.sensor_uid}}', '{{data.timestamp}}')">alert button</button></td>
-
+                <td><button onclick="giveStatus('{{data.sensor_uid}}', '{{data.timestamp}}')">Show Status</button></td>
             </tr>
             {% endfor %}
         </tbody>
@@ -91,23 +109,3 @@ tr:nth-child(even){
 
 </body>
 </html>
-
-<!--
-    <h2>------ Show Latest Data For Specific Sensor  ------</h2>
-    <p>Please select a sensor UID to show its data:</p>
-    <ul>
-        {% for data in all_sensor_data %}
-        <li><a href="/iot/{{data.sensor_uid}}">{{data.sensor_uid}}</a></li>
-        {% endfor %}
-    </ul>
--->
-
-
-
-<!-- 
-    <a href="/">Show All Data</a> 
-    <p> </p>
-    {% for data in all_sensor_data %}
-        <a href="/{{ data.sensor_uid }}">Show Data for {{ data.sensor_uid }}</a><br>
-    {% endfor %}
--->
