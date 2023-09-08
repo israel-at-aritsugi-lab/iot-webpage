@@ -98,11 +98,30 @@ tr:nth-child(even){
                 <!-- <td><button onclick="callAllert('{{data.timestamp}}')">alert button</button></td> -->
                 <!-- <td><button onclick="giveStatus('{{data.timestamp}}')">alert button</button> </td>  -->
                 <!-- <td><button onclick="giveStatus('{{data.timestamp}}')">alert button</button> </td>  -->
-                <td><button onclick="giveStatus('{{data.sensor_uid}}', '{{data.timestamp}}')">Show Status</button></td>
+
+                <!-- <td><button onclick="giveStatus('{{data.sensor_uid}}', '{{data.timestamp}}')">Show Status</button></td> -->
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    <script>
+        window.onload=function(){
+            var allSensorData = [];
+
+            console.log(all_sensor_data);
+
+            for (var data of all_sensor_data){
+                allSensorData.push({
+                    sensor_uid: data.sensor_uid,
+                    timestamp: data.timestamp
+                });
+            }
+
+            allSensorData.forEach(function(data) {
+                giveStatus(data.sensor_uid, data.timestamp);
+            });
+        }
+    </script>
     {% else %}
     <p>No data available.</p> 
     {% endif %} 
