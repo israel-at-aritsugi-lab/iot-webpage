@@ -1,13 +1,14 @@
 from flask import Blueprint, render_template
 views = Blueprint(__name__, "views")
-
+import json ##
 import sys
 sys.path.append("/Users/angeline/workspace/rice-iot-main/")  
-from webpage.database_script import Database  ##
-from angelinedb import database  ##
+from webpage.database_script import Database, sensorData 
+from angelinedb import database  
+from datetime import date, datetime ##
 
-db_instance = database(host="127.0.0.1", port=27017, username="angeline", password="0000", db="my_db")  ##
-db_instance.connect()  ##
+db_instance = database(host="127.0.0.1", port=27017, username="angeline", password="0000", db="my_db")  
+db_instance.connect()  
 
 """
 #display all latest data for each sensor
@@ -35,6 +36,19 @@ def index():
     all_sensor_data_with_status.append(data_dict)
     return render_template('index.html', all_sensor_data_with_status=all_sensor_data_with_status)
 """
+
+# Define a custom serialization function for datetime objects
+def datetime_serializer(obj):
+    if isinstance(obj, (datetime,date)):
+        return obj.isoformat()  # Serialize datetime as ISO 8601 string
+    if isinstance(obj,sensorData):
+        return{
+            "sensor_uid":obj.sensor_uid,
+            "value":obj.value,
+            "timestamp":obj.timestamp.isoformat()
+        }
+    raise TypeError(f"Type {type(obj)} not serializable")
+
     
 @views.route('/')
 def index():
@@ -47,11 +61,20 @@ def index():
         sensor_uid = data.sensor_uid
         status = db.check_sensor_status(sensor_uid)
         sensor_status[sensor_uid] = status
+
+    # all_sensor_data_json=json.dumps([{  #convert all_sensor_data to a JSON string
+    #     "sensor_uid":data.sensor_uid,
+    #     "value":data.value,
+    #     "timestamp":data.timestamp,
+    # }for data in all_sensor_data])
+
+    all_sensor_data_json = json.dumps(all_sensor_data, default=datetime_serializer)
     
-    return render_template('index.html', all_sensor_data=all_sensor_data, sensor_status=sensor_status)
+    
+    return render_template('index.html', all_sensor_data=all_sensor_data, sensor_status=sensor_status,all_sensor_data_json=all_sensor_data_json)
+    #return render_template('index.html', all_sensor_data=all_sensor_data, sensor_status=sensor_status)
 
-
-#db_instance.disconnect()  ##
+#db_instance.disconnect()  
 
 
 
@@ -65,7 +88,7 @@ def display_sensor_data(sensor_uid):
 """
 
 #display all data for specifc sensor
-@views.route('/all/<string:sensor_uid>')  ##
+@views.route('/all/<string:sensor_uid>')  
 def display_all_data(sensor_uid):
     db=Database(db_instance)
     all_data_for_sensor=db.get_all_data_for_sensor(sensor_uid)

@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IoT Homepage </title>
 <style> 
-table{
-    font-family: arial, sans-serif;
-    border-collapse:collapse;
-    width:100%;
-}
-td,th{
-    border:1px solid #386203;
-    text-align:left;
-    padding:8px;
-}
-tr:nth-child(even){
-    background-color:#8ad79b;
-}
+    table{
+        font-family: arial, sans-serif;
+        border-collapse:collapse;
+        width:100%;
+    }
+    td,th{
+        border:1px solid #386203;
+        text-align:left;
+        padding:8px;
+    }
+    tr:nth-child(even){
+        background-color:#8ad79b;
+    }
 </style>
 <script>
     
@@ -99,16 +99,51 @@ tr:nth-child(even){
                 <!-- <td><button onclick="giveStatus('{{data.timestamp}}')">alert button</button> </td>  -->
                 <!-- <td><button onclick="giveStatus('{{data.timestamp}}')">alert button</button> </td>  -->
 
-                <!-- <td><button onclick="giveStatus('{{data.sensor_uid}}', '{{data.timestamp}}')">Show Status</button></td> -->
+                <!-- <td><button onclick="giveStatus('{{data.sensor_uid}}', '{{data.timestamp}}')">Show Status</button></td>  -->
+                
+                <!-- <script>   
+                    giveStatus('{{ data.sensor_uid }}', '{{ data.timestamp }}');
+                </script> -->
             </tr>
+            
             {% endfor %}
         </tbody>
     </table>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
         window.onload=function(){
-            var allSensorData = [];
+            function processSensorData(sensorData){
+                var sensorUID=sensorData.sensor_uid;
+                var timestamp=sensorData.timestamp;
 
-            console.log(all_sensor_data);
+                giveStatus(sensorUID,timestamp);
+
+                console.log("Sensor UID: "+sensorUID);
+                console.log("Timestamp: "+timestamp);
+            }
+            $.get('/',function(data){
+                data.all_sensor_data.forEach(function(sensorData){
+                    processSensorData(sensorData);
+                });
+            });
+        };
+    </script> -->
+
+    <script>
+        var allSensorData=JSON.parse('{{all_sensor_data_json |safe }}');
+        window.onload=function(){
+            allSensorData.forEach(function(data){
+                giveStatus(data.sensor_uid,data.timestamp);
+            });
+        };
+    </script>
+
+
+    <!-- <script>
+        window.onload=function(){
+            var allSensorData = [];
 
             for (var data of all_sensor_data){
                 allSensorData.push({
@@ -117,11 +152,14 @@ tr:nth-child(even){
                 });
             }
 
+            console.log(allSensorData);
+
             allSensorData.forEach(function(data) {
                 giveStatus(data.sensor_uid, data.timestamp);
             });
-        }
-    </script>
+        };
+    </script> -->
+
     {% else %}
     <p>No data available.</p> 
     {% endif %} 
