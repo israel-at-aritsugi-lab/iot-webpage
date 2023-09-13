@@ -3,7 +3,7 @@ views = Blueprint(__name__, "views")
 import json ##
 import sys
 sys.path.append("/Users/angeline/workspace/rice-iot-main/")  
-from webpage.database_script import Database, sensorData 
+from webpage.database_script import Database, sensorData ##
 from angelinedb import database  
 from datetime import date, datetime ##
 
@@ -37,10 +37,10 @@ def index():
     return render_template('index.html', all_sensor_data_with_status=all_sensor_data_with_status)
 """
 
-# Define a custom serialization function for datetime objects
+#convert datetime.datetime & datetime.date objects to strings
 def datetime_serializer(obj):
     if isinstance(obj, (datetime,date)):
-        return obj.isoformat()  # Serialize datetime as ISO 8601 string
+        return obj.isoformat()  
     if isinstance(obj,sensorData):
         return{
             "sensor_uid":obj.sensor_uid,
