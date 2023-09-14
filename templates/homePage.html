@@ -36,13 +36,19 @@
         }        
     }
 */
-    function giveStatus(id,timestamp){
-        var element=document.getElementById(id+'_status');
+    //function get_js_status(id,timestamp){
+    function get_js_status(data){
+        const id=data.sensor_uid;
+        const timestamp=data.timestamp;
         
-        var dataTime=new Date (timestamp);
-        var currentTime=new Date();
+        const element=document.getElementById(id+'_status');
+        //const element=document.getElementById(data.sensor_uid+'_status');
+
+        const dataTime=new Date (timestamp);
+        //const dataTime=new Date (data.timestamp);
+        const currentTime=new Date();
         //var timeDiff=dataTime.getDate()-currentTime.getDate();
-        var timeDiff = (currentTime-dataTime) / (1000 * 60 * 60 * 24); //make sure is currentTime-dataTime to avoid negative value
+        const timeDiff = (currentTime-dataTime) / (1000 * 60 * 60 * 24); //make sure is currentTime-dataTime to avoid negative value
         //var showStatus;      
         
         //for testing purpose
@@ -132,10 +138,11 @@
     </script> -->
 
     <script>
-        var allSensorData=JSON.parse('{{all_sensor_data_json |safe }}');
+        const allSensorData=JSON.parse('{{all_sensor_data_json |safe }}');
         window.onload=function(){
             allSensorData.forEach(function(data){
-                giveStatus(data.sensor_uid,data.timestamp);
+                //get_js_status(data.sensor_uid,data.timestamp);
+                get_js_status(data);
             });
         };
     </script>
