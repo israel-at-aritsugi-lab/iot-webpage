@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-views = Blueprint(__name__, "views")
+
 import json ##
 import sys
 sys.path.append("/Users/angeline/workspace/rice-iot-main/")  
@@ -9,6 +9,9 @@ from datetime import date, datetime ##
 
 db_instance = database(host="127.0.0.1", port=27017, username="angeline", password="0000", db="my_db")  
 db_instance.connect()  
+
+views = Blueprint(__name__, "views",
+                  static_folder='static')
 
 """
 #display all latest data for each sensor
