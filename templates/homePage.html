@@ -21,68 +21,11 @@
         background-color:#8ad79b;
     }
 </style>
+
 {% block javascript %}
     <script src="{{ url_for(request.blueprint+'.static', filename='js/main_page.js') }}"></script>
 {% endblock %}
 
-
-<!-- <script>
-    
-    function callAllert(sensor_uid) {
-        alert(`Hi from Javascript ${sensor_uid}`);
-    }
-    
-/*
-    function giveStatus(timestamp) {
-        const isProblematic = timestamp < 10;
-        if (isProblematic) {
-            return "Not Working well !!"
-        } else {
-            return "OK"
-        }        
-    }
-*/
-    //function get_js_status(id,timestamp){
-    function get_js_status(data){
-        const id=data.sensor_uid;
-        const timestamp=data.timestamp;
-
-        const element=document.getElementById(id+'_status');
-        //const element=document.getElementById(data.sensor_uid+'_status');
-
-        const dataTime=new Date (timestamp);
-        //const dataTime=new Date (data.timestamp);
-        const currentTime=new Date();
-        //var timeDiff=dataTime.getDate()-currentTime.getDate();
-        const timeDiff = (currentTime-dataTime) / (1000 * 60 * 60 * 24); //make sure is currentTime-dataTime to avoid negative value
-        //var showStatus;      
-        
-        //for testing purpose
-        console.log('Timestamp:', timestamp);
-        console.log('Data Time:', dataTime);
-        console.log('Current Time:', currentTime);
-        console.log('Time Difference (days):', timeDiff);
-
-        if (timeDiff>2){
-            element.innerHTML="Not Working Well !!!";
-            //document.getElementById(id).innerHTML="Not Working Well !!!"
-            //showStatus="Not Working Well !!!"
-        }
-        else{
-            element.innerHTML="OK";
-            //showStatus="OK"
-            //document.getElementById(id).innerHTML="OK"
-            //showStatus="OK"
-        }
-    }
-        
-    
-
-    function testingg(sensor_uid, timestamp) {
-        alert(`Hi from Javascript - Sensor UID: ${sensor_uid}, Timestamp: ${timestamp}`);
-    }
-
-</script> -->
 
     <!-- <script id="all_sensor_data_json" type="application/json">
         {{ all_sensor_data_json | tojson | safe }}
@@ -121,7 +64,6 @@
                     giveStatus('{{ data.sensor_uid }}', '{{ data.timestamp }}');
                 </script> -->
             </tr>
-            
             {% endfor %}
         </tbody>
     </table>
