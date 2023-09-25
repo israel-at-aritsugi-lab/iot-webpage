@@ -6,34 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IoT Homepage </title>
 
-    <link rel="stylesheet" type="text/css" href="{{url_for(request.blueprint+'.static', filename='css/main.css') }}" />
-    
-    
+    <link rel="stylesheet" type="text/css" href="{{url_for(request.blueprint+'.static', filename='css/firstPageStyle.css') }}" />
 
-<!-- <style> 
-    table{
-        font-family: arial, sans-serif;
-        border-collapse:collapse;
-        width:100%;
-    }
-    td,th{
-        border:1px solid #386203;
-        text-align:left;
-        padding:8px;
-    }
-    tr:nth-child(even){
-        background-color:#8ad79b;
-    }
-</style> -->
 
 {% block javascript %}
     <script src="{{ url_for(request.blueprint+'.static', filename='js/main_page.js') }}"></script>
 {% endblock %}
-
-
-    <!-- <script id="all_sensor_data_json" type="application/json">
-        {{ all_sensor_data_json | tojson | safe }}
-    </script> -->
 
 </head>
 <body>
@@ -52,21 +30,11 @@
         <tbody>
             {% for data in all_sensor_data %}
             <tr>
-                <!-- <td><a href="/iot/all/{{data.sensor_uid}}" id="{{ data.sensor_uid }}_link">{{ data.sensor_uid }}</a></td> -->
                 <td><a href="/iot/all/{{data.sensor_uid}}" >{{ data.sensor_uid }}</a></td>
                 <td>{{ data.value }}</td>
                 <td>{{ data.timestamp }}</td> 
                 <td>{{ sensor_status[data.sensor_uid] }}</td> 
                 <td id="{{ data.sensor_uid }}_status"></td> 
-                <!-- <td><button onclick="callAllert('{{data.timestamp}}')">alert button</button></td> -->
-                <!-- <td><button onclick="giveStatus('{{data.timestamp}}')">alert button</button> </td>  -->
-                <!-- <td><button onclick="giveStatus('{{data.timestamp}}')">alert button</button> </td>  -->
-
-                <!-- <td><button onclick="giveStatus('{{data.sensor_uid}}', '{{data.timestamp}}')">Show Status</button></td>  -->
-                
-                <!-- <script>   
-                    giveStatus('{{ data.sensor_uid }}', '{{ data.timestamp }}');
-                </script> -->
             </tr>
             {% endfor %}
         </tbody>
@@ -78,19 +46,6 @@
             showJsStatus(formatted_data);            
         }
     </script>
-
-    
-    <!-- <script>
-        const allSensorData=JSON.parse('{{all_sensor_data_json |safe }}');
-        window.onload=function(){
-            allSensorData.forEach(function(data){
-                //get_js_status(data.sensor_uid,data.timestamp);
-                get_js_status(data);
-            });
-        };
-    </script> -->
-
-    
 
     {% else %}
     <p>No data available.</p> 

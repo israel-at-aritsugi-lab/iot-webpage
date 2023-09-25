@@ -26,13 +26,11 @@ class database():
         if self.connection:
             return self.retrieve_dummy_data()
         
-    def insert_dummy_data(self, data_insert): ##
+    def insert_dummy_data(self, data_insert): 
         if self.connection:
             for data in data_insert:
-                #existing_data =sensorData.objects(sensor=data.sensor_uid, value=data.value, timestamp=data.timestamp)
-                #if not existing_data:
-                    sensor_data = sensorData(sensor_uid=data.sensor_uid, value=data.value, timestamp=data.timestamp)
-                    sensor_data.save()
+                sensor_data = sensorData(sensor_uid=data.sensor_uid, value=data.value, timestamp=data.timestamp)
+                sensor_data.save()
 
     def retrieve_dummy_data(self):
         if self.connection:
@@ -50,6 +48,3 @@ if __name__ == "__main__":
     password = "0000"
     db = "my_db"
     
-    #db_instance = database(ip, port, user, pw, db)
-    #db_instance.connect()
-    #db_instance.disconnect()

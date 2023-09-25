@@ -1,44 +1,17 @@
 from flask import Blueprint, render_template
 
-import json ##
+import json 
 import sys
 sys.path.append("/Users/angeline/workspace/rice-iot-main/")  
-from webpage.database_script import Database, sensorData ##
+from webpage.database_script import Database, sensorData 
 from angelinedb import database  
-from datetime import date, datetime ##
+from datetime import date, datetime 
 
 db_instance = database(host="127.0.0.1", port=27017, username="angeline", password="0000", db="my_db")  
 db_instance.connect()  
 
 views = Blueprint(__name__, "views",
                   static_folder='static')
-
-"""
-#display all latest data for each sensor
-@views.route('/')
-def index():
-    db = Database(db_instance)  
-    all_sensor_data=db.get_all_sensor_data()
-    #latest_sensor_data = db.get_latest_sensor_data()
-    #latest_data_date_time=db.get_latest_data_date_time()
-    #return render_template('index.html', latest_data=latest_sensor_data,latest_date_time=latest_data_date_time)
-
-    #return render_template('index.html', all_sensor_data=all_sensor_data)
-
-
-    all_sensor_data_with_status = []
-    for data in all_sensor_data:
-        status = db.check_sensor_status(data.sensor_uid)
-        #all_sensor_data_with_status.append({"data": data, "status": status})
-        data_dict = {
-        "sensor_uid": data.sensor_uid,
-        "value": data.value,
-        "timestamp": data.timestamp,
-        "status": status
-        }   
-    all_sensor_data_with_status.append(data_dict)
-    return render_template('index.html', all_sensor_data_with_status=all_sensor_data_with_status)
-"""
 
 #convert datetime.datetime & datetime.date objects to strings
 def datetime_serializer(obj):
@@ -65,20 +38,10 @@ def index():
         status = db.check_sensor_status(sensor_uid)
         sensor_status[sensor_uid] = status
 
-    # all_sensor_data_json=json.dumps([{  #convert all_sensor_data to a JSON string
-    #     "sensor_uid":data.sensor_uid,
-    #     "value":data.value,
-    #     "timestamp":data.timestamp,
-    # }for data in all_sensor_data])
-
     all_sensor_data_json = json.dumps(all_sensor_data, default=datetime_serializer)
     
     
     return render_template('homePage.html', all_sensor_data=all_sensor_data, sensor_status=sensor_status,all_sensor_data_json=all_sensor_data_json)
-    #return render_template('index.html', all_sensor_data=all_sensor_data, sensor_status=sensor_status)
-
-#db_instance.disconnect()  
-
 
 
 #display the latest data for specific sensor
