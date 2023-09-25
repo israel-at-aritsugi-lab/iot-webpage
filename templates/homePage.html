@@ -5,8 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IoT Homepage </title>
+
+    <link rel="stylesheet" type="text/css" href="{{url_for(request.blueprint+'.static', filename='css/main.css') }}" />
     
-<style> 
+    
+
+<!-- <style> 
     table{
         font-family: arial, sans-serif;
         border-collapse:collapse;
@@ -20,7 +24,7 @@
     tr:nth-child(even){
         background-color:#8ad79b;
     }
-</style>
+</style> -->
 
 {% block javascript %}
     <script src="{{ url_for(request.blueprint+'.static', filename='js/main_page.js') }}"></script>
@@ -71,7 +75,7 @@
     <script>        
         window.onload=function(){
             const formatted_data=JSON.parse('{{all_sensor_data_json |safe }}');
-            show_js_status(formatted_data);            
+            showJsStatus(formatted_data);            
         }
     </script>
 

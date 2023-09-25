@@ -8,7 +8,7 @@
 // }
 
 
-function get_js_status(data){
+function getJsStatus(data){
     const id=data.sensor_uid;
     const timestamp=data.timestamp;
     
@@ -59,11 +59,11 @@ function get_js_status(data){
 
 
 
-function show_js_status(data) {
+function showJsStatus(data) {
     // data.forEach(d => console.log(d.sensor_uid));
     // data.forEach(d => console.log(d.timestamp));
     data.forEach(function(data){
-        get_js_status(data);
+        getJsStatus(data);
     });
 };
 
