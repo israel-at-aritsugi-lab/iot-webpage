@@ -42,54 +42,56 @@ function get_js_status(data){
 }
 
 
-// document.addEventListener('DOMContentLoaded', function () {
-//     console.log("LEARN ANGELINE!", '{{ all_sensor_data_json }}');
-//     const allSensorData = JSON.parse('{{ all_sensor_data_json | tojson | safe }}');
-//     allSensorData.forEach(function (data) {
-//         get_js_status(data);
-//     });
-// });
 
 
 
-
-window.onload=function(){
-    console.log("LEARN ANGELINE!",'{{all_sensor_data_json}}');
-    // console.log('{{all_sensor_data_json |safe }}');
-    const allSensorData=JSON.parse('{{all_sensor_data_json |safe }}');
-    //allSensorData.forEach(function(data){
-    allSensorData.forEach((data) => {
-          get_js_status(data);
-    });
-};
-
-
-// const allSensorData='{{all_sensor_data_json |safe }}';
+//try1
 
 // window.onload=function(){
-//     console.log("LEARN ANGELINE!",allSensorData);
+//     console.log("LEARN ANGELINE!",'{{all_sensor_data_json}}');
 //     // console.log('{{all_sensor_data_json |safe }}');
-    
-//     const parsedSensorData=JSON.parse(allSensorData);
-
+//     const allSensorData=JSON.parse('{{all_sensor_data_json |safe }}');
 //     //allSensorData.forEach(function(data){
-//     parsedSensorData.forEach((data) => {
-//          get_js_status(data);
+//     allSensorData.forEach((data) => {
+//           get_js_status(data);
 //     });
 // };
 
+
+
+//try2
 
 // window.onload = function () {
-//     const jsonScript = document.getElementById('all_sensor_data_json');
-
-//     const jsonStr = jsonScript.textContent;
-//     const allSensorData = JSON.parse(jsonStr);
-
-//     allSensorData.forEach((data) => {
-//         get_js_status(data);
-//     });
+//     const xhr = new XMLHttpRequest();
+    
+//     xhr.onreadystatechange = function () {
+//         if (xhr.readyState === 4){
+//             if(xhr.status === 200) {
+//                 try{
+//                     const allSensorData = JSON.parse(xhr.responseText);
+//                     allSensorData.forEach(function (data) {
+//                         get_js_status(data);
+//                     });
+//                 }
+//                 catch(error){
+//                     console.error("JSON Parse error:", error);
+//                     console.log("Response Text:", xhr.responseText); 
+//                 }
+//             }
+//             else{
+//                 console.error("HTTP request error:",xhr.status);
+//                 console.log("Response Text:", xhr.responseText);
+//             }
+//         }
+//     };
+    
+//     xhr.open('GET', '/iot', true); 
+//     xhr.send();
 // };
 
+
+
+//try3
 
 // window.onload = function () {
 //     const jsonScript = document.getElementById('all_sensor_data_json');
@@ -106,6 +108,42 @@ window.onload=function(){
 //     }
 // };
 
+
+
+//try4
+
+// window.onload = function () {
+//     const jsonScript = document.getElementById('all_sensor_data_json');
+    
+//     if (jsonScript) {
+//         const jsonStr = jsonScript.textContent;
+//         console.log("JSON Data:", jsonStr);
+//         try {
+//             const allSensorData = JSON.parse(jsonStr);
+
+//             if (Array.isArray(allSensorData)) {
+//                 allSensorData.forEach(function (data) {
+//                     get_js_status(data);
+//                 });
+//             } else {
+//                 console.error("The JSON data is not an array.");
+//             }
+//         } catch (error) {
+//             console.error("Error parsing JSON:", error);
+//         }
+//     } else {
+//         console.error("The script tag with ID 'all_sensor_data_json' was not found.");
+//     }
+// };
+
+
+function show_js_status(data) {
+    // data.forEach(d => console.log(d.sensor_uid));
+    // data.forEach(d => console.log(d.timestamp));
+    data.forEach(function(data){
+        get_js_status(data);
+    });
+};
 
 
 

@@ -21,7 +21,9 @@
         background-color:#8ad79b;
     }
 </style>
-
+{% block javascript %}
+    <script src="{{ url_for(request.blueprint+'.static', filename='js/main_page.js') }}"></script>
+{% endblock %}
 
 
 <!-- <script>
@@ -124,26 +126,12 @@
         </tbody>
     </table>
 
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
+    <script>        
         window.onload=function(){
-            function processSensorData(sensorData){
-                var sensorUID=sensorData.sensor_uid;
-                var timestamp=sensorData.timestamp;
-
-                giveStatus(sensorUID,timestamp);
-
-                console.log("Sensor UID: "+sensorUID);
-                console.log("Timestamp: "+timestamp);
-            }
-            $.get('/',function(data){
-                data.all_sensor_data.forEach(function(sensorData){
-                    processSensorData(sensorData);
-                });
-            });
-        };
-    </script> -->
+            const formatted_data=JSON.parse('{{all_sensor_data_json |safe }}');
+            show_js_status(formatted_data);            
+        }
+    </script>
 
     
     <!-- <script>
@@ -158,39 +146,9 @@
 
     
 
-<!-- <script src="webpage/templates/home_js.js"></script> -->
-    <!-- <script>  ####
-        // import {initialize_data} from './home_js.js';
-        const allSensorData=JSON.parse('{{all_sensor_data_json |safe }}');
-        initialize_data(allSensorData);
-    </script> -->
-
-
-    <!-- <script>
-        window.onload=function(){
-            var allSensorData = [];
-
-            for (var data of all_sensor_data){
-                allSensorData.push({
-                    sensor_uid: data.sensor_uid,
-                    timestamp: data.timestamp
-                });
-            }
-
-            console.log(allSensorData);
-
-            allSensorData.forEach(function(data) {
-                giveStatus(data.sensor_uid, data.timestamp);
-            });
-        };
-    </script> -->
-
     {% else %}
     <p>No data available.</p> 
     {% endif %} 
-    {% block javascript %}
-    <script src="{{ url_for(request.blueprint+'.static', filename='js/main_page.js') }}"></script>
-    {% endblock %}
-    <!-- <script src="Jhome.js" type="module"></script> -->
+    
 </body>
 </html>
