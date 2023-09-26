@@ -1,11 +1,12 @@
-# Rice-IoT 
-This project aims to collect data from the paddy field and help improve the crops.
+# IoT for agriculture
+This project aims to create the user interface for displaying the data.
+
 
 ### Project Guidelines
-To create webpage as the user interface.
+To create webpage using frontend (CSS + JS + HTML) and backend (Python + mongoengine).
+
 
 ### Folder Structure
-
 frontend
 - **static:** Mainly focus on the CSS and JavaScript.
 - **templates:** Mainly focus on the HTML.
