@@ -4,7 +4,7 @@ import json
 import sys
 sys.path.append("/Users/angeline/workspace/rice-iot-main/")  
 from webpage.database_script import Database, sensorData 
-from angelinedb import database  
+from store_data import database  
 from datetime import date, datetime 
 
 db_instance = database(host="127.0.0.1", port=27017, username="angeline", password="0000", db="my_db")  

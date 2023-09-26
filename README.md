@@ -13,8 +13,8 @@ frontend
 
 backend
 - **insert_data:** Insert data and send to the server.
-- **angelinedb:** To retrieve data and store data. (server)
-- **database_script:** Import the database from angelinedb.
-- **views:** Import from the database_script and angelinedb, connect server and the frontend.
+- **store_data:** To retrieve data and store data. (server)
+- **database_script:** Import the database from store_data.
+- **views:** Import from the database_script and store_data, connect server and the frontend.
 - **app:** Main file to run everything.
 
