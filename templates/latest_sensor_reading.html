@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IoT Homepage </title>
 
-    <link rel="stylesheet" type="text/css" href="{{url_for(request.blueprint+'.static', filename='css/main.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{url_for(request.blueprint+'.static', filename='css/latest_sensor_layout.css') }}" />
 
 
 {% block javascript %}
-    <script src="{{ url_for(request.blueprint+'.static', filename='js/main_page.js') }}"></script>
+    <script src="{{ url_for(request.blueprint+'.static', filename='js/latest_sensor_script.js') }}"></script>
 {% endblock %}
 
 </head>

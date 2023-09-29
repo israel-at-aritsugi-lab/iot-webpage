@@ -41,7 +41,7 @@ def index():
     all_sensor_data_json = json.dumps(all_sensor_data, default=datetime_serializer)
     
     
-    return render_template('homePage.html', all_sensor_data=all_sensor_data, sensor_status=sensor_status,all_sensor_data_json=all_sensor_data_json)
+    return render_template('latest_sensor_reading.html', all_sensor_data=all_sensor_data, sensor_status=sensor_status,all_sensor_data_json=all_sensor_data_json)
 
 
 #display the latest data for specific sensor
@@ -58,5 +58,5 @@ def display_sensor_data(sensor_uid):
 def display_all_data(sensor_uid):
     db=Database(db_instance)
     all_data_for_sensor=db.get_all_data_for_sensor(sensor_uid)
-    return render_template('allDataPage.html',all_sensor_data=all_data_for_sensor)
+    return render_template('sensor_data_viewer.html',all_sensor_data=all_data_for_sensor)
    
