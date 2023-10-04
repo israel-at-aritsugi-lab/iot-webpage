@@ -50,6 +50,79 @@ class Database:
             status = 'Not Working Well !!!'
 
         return status
+    
+    
+    # def aggregate_sensor_data(self,sensor_uid):
+    #     aggregated_data = {}
+    #     distinct_sensor_uids = sensorData.objects().distinct("sensor_uid")
+        
+    #     for sensor_uid in distinct_sensor_uids:
+    #         device_id = "Device " + sensor_uid[:3]  # Assuming the first 3 characters are common for each device
+    #         sensor_data = self.get_all_data_for_sensor(sensor_uid)
+            
+    #         if device_id not in aggregated_data:
+    #             aggregated_data[device_id] = []
+            
+    #         aggregated_data[device_id].extend(sensor_data)
+        
+    #     return aggregated_data
+    
+
+    #To aggregrate the sensors as device
+    def aggregate_sensor_data(self,sensor_uid):
+        aggregated_data = {}
+        latest_timestamps = {}  # Dictionary to track the latest timestamp for each device
+        distinct_sensor_uids = sensorData.objects().distinct("sensor_uid")
+        
+        for sensor_uid in distinct_sensor_uids:
+            device_id = "Device " + sensor_uid[:3]  # Assuming the first 3 characters are common for each device
+            sensor_data = self.get_all_data_for_sensor(sensor_uid)
+            
+            if device_id not in aggregated_data:
+                aggregated_data[device_id] = []
+                latest_timestamps[device_id] = None  # Initialize the latest timestamp as None
+            
+            aggregated_data[device_id].extend(sensor_data)
+            
+            # Update the latest timestamp for this device
+            if sensor_data:
+                latest_sensor_timestamp = max(sensor_data, key=lambda x: x.timestamp).timestamp
+                if latest_timestamps[device_id] is None or latest_sensor_timestamp > latest_timestamps[device_id]:
+                    latest_timestamps[device_id] = latest_sensor_timestamp
+        
+        return aggregated_data, latest_timestamps
+
+
+
+
+    def get_device_status_code(self, sensor_uid, max_days_no_data=1.5):
+        working_sensors = 0
+        total_sensors = len(sensor_uid)
+        
+        for sensor_uid in sensor_uid:
+            sensor_status = self.check_sensor_status(sensor_uid, max_days_no_data)
+            if sensor_status == 'OK':
+                working_sensors += 1
+        
+        return self.calculate_device_status(working_sensors, total_sensors)
+
+    def calculate_device_status(self,working_sensors, total_sensors):        
+        if total_sensors == 0:
+            return 'no-sensors'
+        elif working_sensors == total_sensors:
+            return 'green'
+        elif working_sensors == 0:
+            return 'red'
+        elif working_sensors / total_sensors < 0.5:
+            return 'orange'
+        else:
+            return 'yellow'
+        
+
+    
+
+
+
          
 
 
@@ -60,6 +133,6 @@ if __name__ == "__main__":
     db=Database(db_instance)  
 
     print("I am running!")
-    retrieve_dummy_data(db_instance)  
+    retrieve_dummy_data(db_instance) 
 
     db_instance.disconnect()

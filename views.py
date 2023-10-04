@@ -59,4 +59,22 @@ def display_all_data(sensor_uid):
     db=Database(db_instance)
     all_data_for_sensor=db.get_all_data_for_sensor(sensor_uid)
     return render_template('sensor_data_viewer.html',all_sensor_data=all_data_for_sensor)
+
+#display all the devices
+@views.route('/devices')
+def display_devices():
+    db=Database(db_instance)
+    all_sensor_data=db.get_all_sensor_data()
+
+    for data in all_sensor_data:
+        sensor_uids=data.sensor_uid
+
+    aggregated_data,latest_timestamps=db.aggregate_sensor_data(sensor_uids)
+    device_status_code=db.get_device_status_code(sensor_uids)
+    return render_template('device_viewer.html',aggregated_data=aggregated_data, latest_timestamps=latest_timestamps, device_status_code=device_status_code)
+
+
+#display list of sensors of the specific device
+#@views.route('/device_sensor/<string:device_id>')
+
    

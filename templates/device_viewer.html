@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IoT Devices </title>
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="/assets/dcode.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        .content-table{
+            border-collapse:collapse;
+            margin:25px 0;
+            font-size:0.9em;
+            min-width:400px;
+            border-radius:5px 5px 0 0;
+            overflow:hidden;
+            box-shadow:0 0 20px rgba(0, 0, 0, 0.15)
+        }
+    
+        .content-table thead tr{
+            background-color:aquamarine;
+            color:aliceblue;
+            text-align:left;
+            font-weight:bold;
+        }
+    
+        .content-table th,
+        .content-table td{
+            padding:12px 15px;
+        }
+    
+        .content-table tbody tr{
+            border-bottom:thin solid #dddddd;
+        }
+    
+        .content-table tbody tr:nth-of-type(even){
+            background-color:aliceblue;
+        }
+    
+        .content-table tbody tr:last-of-type{
+            border-bottom:2px solid aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <h1>List of Devices</h1>
+    {% if all_sensor_data %}
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th>Device</th>
+                <th>Latest Update</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in all_sensor_data %}
+            <tr>
+                <!-- <td><a href="/iot/device_sensor/{{data.device_id}}" >{{ data.device_id }}</a></td> -->
+                <td>{{ data.device_id }}</td>
+                <td>{{ data.latest_timestamps }}</td>
+                <td>
+                    {% if data.device_status_code == 'ok' %}
+                    <div class="circle green"></div>
+                    {% elif data.device_status_code == 'not-working' %}
+                    <div class="circle red"></div>
+                    {% elif data.device_status_code == 'orange' %}
+                    <div class="circle orange"></div>
+                    {% elif data.device_status_code == 'yellow' %}
+                    <div class="circle yellow"></div>
+                    {% elif data.device_status_code == 'no-sensors' %}
+                    <div class="circle gray"></div>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</body>
+</html>
