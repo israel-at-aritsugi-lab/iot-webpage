@@ -7,6 +7,7 @@ from webpage.database_script import Database, sensorData
 from store_data import database  
 from datetime import date, datetime 
 
+
 db_instance = database(host="127.0.0.1", port=27017, username="angeline", password="0000", db="my_db")  
 db_instance.connect()  
 
@@ -72,8 +73,15 @@ def display_devices():
 
     aggregated_data=db.aggregate_sensor_data()
     latest_timestamps=db.get_latest_timestamps(aggregated_data)
-    
     device_status_code=db.get_device_status_code(sensor_uids)
+
+    print(f"all_sensor_data: {all_sensor_data}")
+    print(f"sensor_uids: {sensor_uids}")
+    print(f"aggregated_data: {aggregated_data}")
+    print(f"latest_timestamps: {latest_timestamps}")
+    print(f"device_status_code: {device_status_code}")
+
+
     return render_template('device_viewer.html',aggregated_data=aggregated_data, latest_timestamps=latest_timestamps, device_status_code=device_status_code)
 
 
