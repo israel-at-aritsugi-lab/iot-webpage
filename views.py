@@ -66,10 +66,13 @@ def display_devices():
     db=Database(db_instance)
     all_sensor_data=db.get_all_sensor_data()
 
+    sensor_uids=[]
     for data in all_sensor_data:
-        sensor_uids=data.sensor_uid
+        sensor_uids.append(data.sensor_uid)
 
-    aggregated_data,latest_timestamps=db.aggregate_sensor_data(sensor_uids)
+    aggregated_data=db.aggregate_sensor_data()
+    latest_timestamps=db.get_latest_timestamps(aggregated_data)
+    
     device_status_code=db.get_device_status_code(sensor_uids)
     return render_template('device_viewer.html',aggregated_data=aggregated_data, latest_timestamps=latest_timestamps, device_status_code=device_status_code)
 
