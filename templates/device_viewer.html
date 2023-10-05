@@ -18,7 +18,7 @@
         }
     
         .content-table thead tr{
-            background-color:aquamarine;
+            background-color:rgb(50, 203, 139);
             color:aliceblue;
             text-align:left;
             font-weight:bold;
@@ -40,6 +40,35 @@
         .content-table tbody tr:last-of-type{
             border-bottom:2px solid aquamarine;
         }
+
+        .circle{
+            width:20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .circle.green{
+            background-color: #4CAF50;
+        }
+
+        .circle.red{
+            background-color: #f61840;
+        }
+
+        .circle.orange{
+            background-color: #e88205;
+        }
+
+        .circle.yellow{
+            background-color: #edf518;
+        }
+
+        .circle.gray{
+            background-color: #4f4b4b;
+        }
+
     </style>
 </head>
 <body>
@@ -60,7 +89,16 @@
                 <td>{{ data.device_id }}</td>
                 <td>{{ data.latest_timestamps }}</td>
                 <td>
-                    {% if data.device_status_code == 'green' %}
+                    <div class="circle 
+                        {% if data.device_status_code =='green' %}green
+                        {% elif data.device_status_code == 'red' %}red
+                        {% elif data.device_status_code == 'orange' %}orange
+                        {% elif data.device_status_code == 'yellow' %}yellow
+                        {% elif data.device_status_code == 'no-sensors' %}gray
+                        {% endif %}">
+                    </div>
+
+                    <!-- {% if data.device_status_code == 'green' %}
                     <div class="circle green"></div>
                     {% elif data.device_status_code == 'red' %}
                     <div class="circle red"></div>
@@ -70,8 +108,8 @@
                     <div class="circle yellow"></div>
                     {% elif data.device_status_code == 'no-sensors' %}
                     <div class="circle gray"></div>
-                    {% endif %}
-                    <p>Status Code: {{ data.device_status_code }}</p>
+                    {% endif %} -->
+                    <!-- <p>Status Code: {{ data.device_status_code }}</p> -->
                 </td>
             </tr>
             {% endfor %}
