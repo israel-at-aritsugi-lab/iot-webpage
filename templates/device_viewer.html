@@ -9,9 +9,9 @@
     <style>
         .content-table{
             border-collapse:collapse;
-            margin:25px 0;
-            font-size:0.9em;
-            min-width:400px;
+            margin:50px 0;
+            font-size:1.5em;
+            min-width:800px;
             border-radius:5px 5px 0 0;
             overflow:hidden;
             box-shadow:0 0 20px rgba(0, 0, 0, 0.15)
@@ -44,7 +44,7 @@
 </head>
 <body>
     <h1>List of Devices</h1>
-    {% if all_sensor_data %}
+    {% if device_info %}
     <table class="content-table">
         <thead>
             <tr>
@@ -54,7 +54,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for data in all_sensor_data %}
+            {% for data in device_info %}
             <tr>
                 <!-- <td><a href="/iot/device_sensor/{{data.device_id}}" >{{ data.device_id }}</a></td> -->
                 <td>{{ data.device_id }}</td>
@@ -71,11 +71,14 @@
                     {% elif data.device_status_code == 'no-sensors' %}
                     <div class="circle gray"></div>
                     {% endif %}
+                    <p>Status Code: {{ data.device_status_code }}</p>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    {% else %}
+    <p>No data available.</p> 
     {% endif %}
 </body>
 </html>

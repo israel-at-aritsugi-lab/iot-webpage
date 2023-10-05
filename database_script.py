@@ -54,12 +54,28 @@ class Database:
 
 
     #To aggregrate the sensors as device
-    def aggregate_sensor_data(self):
+    # def aggregate_sensor_data(self):
+    #     aggregated_data = {}
+    #     distinct_sensor_uids = sensorData.objects().distinct("sensor_uid")
+        
+    #     for sensor_uid in distinct_sensor_uids:
+    #         device_id = "Device " + sensor_uid[:3]  # Assuming the first 3 characters are common for each device
+    #         sensor_data = self.get_all_data_for_sensor(sensor_uid)
+            
+    #         if device_id not in aggregated_data:
+    #             aggregated_data[device_id] = []
+            
+    #         aggregated_data[device_id].extend(sensor_data)
+        
+    #     return aggregated_data
+    
+
+    def aggregate_sensor_data(self,device_id):
         aggregated_data = {}
         distinct_sensor_uids = sensorData.objects().distinct("sensor_uid")
         
         for sensor_uid in distinct_sensor_uids:
-            device_id = "Device " + sensor_uid[:3]  # Assuming the first 3 characters are common for each device
+            #device_id = "Device " + sensor_uid[:3]  # Assuming the first 3 characters are common for each device
             sensor_data = self.get_all_data_for_sensor(sensor_uid)
             
             if device_id not in aggregated_data:
@@ -92,8 +108,12 @@ class Database:
         
         for sensor_uid in sensor_uids:
             sensor_status = self.check_sensor_status(sensor_uid, max_days_no_data)
-            if sensor_status == 'OK':
+            print(f"Sensor UID: {sensor_uid}, Status: {sensor_status}")
+            if sensor_status != 'Not Working Well !!!':
                 working_sensors += 1
+
+        print(f"Working Sensors: {working_sensors}, Total Sensors: {total_sensors}")
+
         
         return self.calculate_device_status(working_sensors, total_sensors)
 
