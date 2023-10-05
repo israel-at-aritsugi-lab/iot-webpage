@@ -61,6 +61,7 @@ def display_all_data(sensor_uid):
     all_data_for_sensor=db.get_all_data_for_sensor(sensor_uid)
     return render_template('sensor_data_viewer.html',all_sensor_data=all_data_for_sensor)
 
+
 #display all the devices
 @views.route('/devices')
 def display_devices():
@@ -76,15 +77,12 @@ def display_devices():
             sensor_uids_by_device[device_id]=[]
         sensor_uids_by_device[device_id].append(data.sensor_uid)
 
-    # Create a list to store dictionaries with device_id, latest_timestamps, and device_status_code
     device_info = []
 
     for device_id, sensor_uids in sensor_uids_by_device.items():
-        # Calculate the device status for this specific device
         device_status = db.get_device_status_code(sensor_uids)
         aggregated_data=db.aggregate_sensor_data(device_id)
         latest_timestamps = db.get_latest_timestamps(aggregated_data).get(device_id, None)
-        #latest_timestamps=db.get_latest_timestamps(aggregated_data)
         
         device_info.append({
             'device_id': device_id,
