@@ -52,18 +52,57 @@ class Database:
         return status
     
 
+    # def aggregate_sensor_data(self,device_id):
+    #     aggregated_data = {}  # Initialize an empty dictionary for aggregated data
+    #     distinct_sensor_uids = sensorData.objects().distinct("sensor_uid")
+
+    #     # Process sensor UIDs with '101' device IDs first
+    #     for sensor_uid in distinct_sensor_uids:
+    #         #device_id = sensor_uid[:3]
+    #         if device_id == '101':
+    #             sensor_data = self.get_all_data_for_sensor(sensor_uid)
+
+    #             if device_id not in aggregated_data:
+    #                 aggregated_data[device_id] = []
+
+    #             aggregated_data[device_id].extend(sensor_data)
+
+    #     # Process other sensor UIDs
+    #     for sensor_uid in distinct_sensor_uids:
+    #         #device_id = sensor_uid[:3]
+    #         print("Sample Sensor UID:", sensor_uid)
+    #         print("current device id:", device_id)
+    #         if device_id != '101':
+    #             sensor_data = self.get_all_data_for_sensor(sensor_uid)
+
+    #             if device_id not in aggregated_data:
+    #                 aggregated_data[device_id] = []
+
+    #             aggregated_data[device_id].extend(sensor_data)
+
+    #     return aggregated_data
+
+
 
     #To aggregrate the sensors as device
-    # def aggregate_sensor_data(self):
+    # def aggregate_sensor_data(self,device_id):
     #     aggregated_data = {}
     #     distinct_sensor_uids = sensorData.objects().distinct("sensor_uid")
+    #     #distinct_sensor_uids_sorted=sorted(distinct_sensor_uids)
+    #     print("distinct sensor uid:",distinct_sensor_uids )
+    #     print("device id:", device_id)
         
     #     for sensor_uid in distinct_sensor_uids:
-    #         device_id = "Device " + sensor_uid[:3]  # Assuming the first 3 characters are common for each device
-    #         sensor_data = self.get_all_data_for_sensor(sensor_uid)
+    #         #if sensor_uid.startswith(device_id):
+    #         print("Sample Sensor UID:", sensor_uid)
+    #         print("current device id:", device_id)
+    #         if sensor_uid[:len(device_id)]==device_id:
+    #             print("Found matching sensor UID:", sensor_uid)
+    #         #device_id = "Device " + sensor_uid[:3]  # Assuming the first 3 characters are common for each device
+    #             sensor_data = self.get_all_data_for_sensor(sensor_uid)
             
-    #         if device_id not in aggregated_data:
-    #             aggregated_data[device_id] = []
+    #             if device_id not in aggregated_data:
+    #                 aggregated_data[device_id] = []
             
     #         aggregated_data[device_id].extend(sensor_data)
         
@@ -76,13 +115,16 @@ class Database:
         
         for sensor_uid in distinct_sensor_uids:
             #device_id = "Device " + sensor_uid[:3]  # Assuming the first 3 characters are common for each device
-            sensor_data = self.get_all_data_for_sensor(sensor_uid)
-            
-            if device_id not in aggregated_data:
-                aggregated_data[device_id] = []
-            
-            aggregated_data[device_id].extend(sensor_data)
+            if sensor_uid.startswith(device_id):
+                sensor_data = self.get_all_data_for_sensor(sensor_uid)
+                
+                if device_id not in aggregated_data:
+                    aggregated_data[device_id] = []
+                
+                aggregated_data[device_id].extend(sensor_data)
         
+        print("aggregated data:",aggregated_data)
+
         return aggregated_data
     
 
@@ -97,6 +139,8 @@ class Database:
 
             else:
                 latest_timestamps[device_id]=None
+
+        print("Latest timestamps:", latest_timestamps)
 
         return latest_timestamps
     
@@ -130,10 +174,6 @@ class Database:
             return 'orange'
         else:
             return 'yellow'
-        
-
-    
-         
 
 
 if __name__ == "__main__":

@@ -68,8 +68,6 @@ def display_devices():
     db=Database(db_instance)
     all_sensor_data=db.get_all_sensor_data()
 
-    
-
     sensor_uids_by_device={}
     for data in all_sensor_data:
         device_id=data.sensor_uid[:3]
@@ -79,10 +77,22 @@ def display_devices():
 
     device_info = []
 
+
+    
+
     for device_id, sensor_uids in sensor_uids_by_device.items():
         device_status = db.get_device_status_code(sensor_uids)
         aggregated_data=db.aggregate_sensor_data(device_id)
-        latest_timestamps = db.get_latest_timestamps(aggregated_data).get(device_id, None)
+        latest_timestamps = db.get_latest_timestamps(aggregated_data).get(device_id)
+        
+        # if latest_timestamp:
+        #     latest_timestamp_str = latest_timestamp.strftime("%Y-%m-%d %H:%M:%S")  # Format the timestamp as desired
+        # else:
+        #     latest_timestamp_str = "N/A"
+        
+        
+        #latest_timestamps = db.get_latest_timestamps(aggregated_data).get(device_id, None)
+        
         
         device_info.append({
             'device_id': device_id,
