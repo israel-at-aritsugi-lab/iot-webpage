@@ -1,0 +1,83 @@
+.content-table{
+    border-collapse:collapse;
+    margin:50px 0;
+    font-size:1.5em;
+    min-width:800px;
+    border-radius:5px 5px 0 0;
+    overflow:hidden;
+    box-shadow:0 0 20px rgba(0, 0, 0, 0.15)
+}
+
+.content-table thead tr{
+    background-color:rgb(50, 203, 139);
+    color:aliceblue;
+    text-align:left;
+    font-weight:bold;
+}
+
+.content-table th,
+.content-table td{
+    padding:12px 15px;
+}
+
+.content-table tbody tr{
+    border-bottom:thin solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even){
+    background-color:aliceblue;
+}
+
+.content-table tbody tr:last-of-type{
+    border-bottom:2px solid aquamarine;
+}
+
+.circle{
+    width:20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.circle.green{
+    background-color: #4CAF50;
+}
+
+.circle.red{
+    background-color: #f61840;
+}
+
+.circle.orange{
+    background-color: #e88205;
+}
+
+.circle.yellow{
+    background-color: #edf518;
+}
+
+.circle.gray{
+    background-color: #4f4b4b;
+}
+
+
+.animated-button{
+    position:absolute;
+    top:30px;
+    right:600px;
+}
+
+.animated-button{
+    display:inline-block;
+    padding:10px 20px;
+    background-color:#196e1b;
+    color:white;
+    border-radius:5px;
+    text-decoration:none;
+    transition:transoform 0.2s, box-shadow 0.2s;
+}
+
+.animated-button:hover{
+    transform:scale(1.05);
+    box-shadow:0 4px 6px rgba(0,0,0,0,1);
+}
