@@ -68,10 +68,33 @@
         .circle.gray{
             background-color: #4f4b4b;
         }
+
+        
+        .animated-button{
+            position:absolute;
+            top:30px;
+            right:600px;
+        }
+
+        .animated-button{
+            display:inline-block;
+            padding:10px 20px;
+            background-color:#4CAF50;
+            color:white;
+            border-radius:5px;
+            text-decoration:none;
+            transition:transoform 0.2s, box-shadow 0.2s;
+        }
+
+        .animated-button:hover{
+            transform:scale(1.05);
+            box-shadow:0 4px 6px rgba(0,0,0,0,1);
+        }
     </style>
 </head>
 <body>
     <h1>List of Devices</h1>
+    <a href="/iot" class="animated-button">Sensors</a>
     {% if device_info %}
     <table class="content-table">
         <thead>

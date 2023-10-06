@@ -85,15 +85,6 @@ def display_devices():
         aggregated_data=db.aggregate_sensor_data(device_id)
         latest_timestamps = db.get_latest_timestamps(aggregated_data).get(device_id)
         
-        # if latest_timestamp:
-        #     latest_timestamp_str = latest_timestamp.strftime("%Y-%m-%d %H:%M:%S")  # Format the timestamp as desired
-        # else:
-        #     latest_timestamp_str = "N/A"
-        
-        
-        #latest_timestamps = db.get_latest_timestamps(aggregated_data).get(device_id, None)
-        
-        
         device_info.append({
             'device_id': device_id,
             'latest_timestamps': latest_timestamps,
@@ -105,58 +96,6 @@ def display_devices():
     }
 
     return render_template('device_viewer.html', **context)
-
-
-# @views.route('/devices')
-# def display_devices():
-#     db=Database(db_instance)
-#     all_sensor_data=db.get_all_sensor_data()
-
-    # sensor_uids=[]
-    # for data in all_sensor_data:
-    #     sensor_uids.append(data.sensor_uid)
-
-    # aggregated_data=db.aggregate_sensor_data()
-    # latest_timestamps=db.get_latest_timestamps(aggregated_data)
-    # device_status_code=db.get_device_status_code(sensor_uids_by_device)
-
-    # device_info = []
-
-    # for device_id, latest_timestamp in latest_timestamps.items():
-    #     # device_status = device_status_code.get(device_id, 'no-sensors')
-    #     if device_id in device_status_code:
-    #         device_status=device_status_code[device_id]
-    #     else:
-    #         device_status='no-sensors'
-
-    #     device_info.append({
-    #         'device_id': device_id,
-    #         'latest_timestamps': latest_timestamp,
-    #         'device_status_code': device_status
-    #     })
-
-    # # Create a context dictionary with the variables you want to pass to the template
-    # context = {
-    #     'device_info': device_info
-    # }
-
-    # return render_template('device_viewer.html', **context)
-
-
-
-
-
-
-    # print(f"all_sensor_data: {all_sensor_data}")
-    # print(f"sensor_uids: {sensor_uids}")
-    # print(f"aggregated_data: {aggregated_data}")
-    # print(f"latest_timestamps: {latest_timestamps}")
-    # print(f"device_status_code: {device_status_code}")
-
-
-    # return render_template('device_viewer.html',aggregated_data=aggregated_data, latest_timestamps=latest_timestamps, device_status_code=device_status_code)
-
-
 
 
 
