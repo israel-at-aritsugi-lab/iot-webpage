@@ -25,7 +25,6 @@
             {% for data in device_info %}
             <tr>
                 <td><a href="/iot/devices/{{data.device_id}}" >{{ data.device_id }}</a></td>
-                <!-- <td>{{ data.device_id }}</td> -->
                 <td>{{ data.latest_timestamps }}</td>
                 <td>
                     <div class="circle 
@@ -36,9 +35,6 @@
                         {% elif data.device_status_code == 'no-sensors' %}gray
                         {% endif %}">
                     </div>
-
-                    <!-- <p>Latest Timestamp: {{ data.latest_timestamps }}</p>
-                    <p>Status Code: {{ data.device_status_code }}</p>  -->
                 </td>
             </tr>
             {% endfor %}

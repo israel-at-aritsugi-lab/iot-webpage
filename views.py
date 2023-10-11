@@ -77,9 +77,6 @@ def display_devices():
 
     device_info = []
 
-
-    
-
     for device_id, sensor_uids in sensor_uids_by_device.items():
         device_status = db.get_device_status_code(sensor_uids)
         aggregated_data=db.aggregate_sensor_data(device_id)
@@ -103,7 +100,6 @@ def display_devices():
 @views.route('/devices/<string:device_id>')
 def display_sensors_for_devices(device_id):
     db=Database(db_instance)
-    #all_sensor_data=db.get_all_sensor_data()
     sensors_for_device = db.get_device_sensors(device_id)
 
     sensor_info=[]
@@ -112,9 +108,7 @@ def display_sensors_for_devices(device_id):
             print(f"Skippping non-object value: {sensor_data}")
             continue
 
-        #print(f"sensor type: {type(sensor_data)}")
         if isinstance(sensor_data, sensorData):
-        #if sensor_data:
             status=db.check_sensor_status(sensor_data.sensor_uid)
             sensor_info.append({
                 'sensor_uid': sensor_data.sensor_uid,
@@ -137,15 +131,3 @@ def display_sensors_for_devices(device_id):
     print(f"sensor info:{sensor_info}")
 
     return render_template('sensors_for_device_viewer.html', **context)
-
-    # sensor_uids_by_device={}
-    # for data in all_sensor_data:
-    #     #device_id=data.sensor_uid[:3]
-    #     if device_id not in sensor_uids_by_device:
-    #         sensor_uids_by_device[device_id]=[]
-    #     sensor_uids_by_device[device_id].append(data.sensor_uid)
-
-    # for sensor_uids in sensor_uids_by_device.items():
-    #     sensor_list=db.get_device_sensors(sensor_uids)
-
-    # sensors_for_device=[data for data in all_sensor_data if data.sensor_uid.startswith(device.id)]
