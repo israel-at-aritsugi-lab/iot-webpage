@@ -9,7 +9,7 @@
 }
 
 .content-table thead tr{
-    background-color:rgb(50, 203, 139);
+    background-color:rgb(40, 158, 158);
     color:aliceblue;
     text-align:left;
     font-weight:bold;
@@ -29,7 +29,7 @@
 }
 
 .content-table tbody tr:last-of-type{
-    border-bottom:2px solid aquamarine;
+    border-bottom:2px solid rgb(70, 176, 190);
 }
 
 .previous{
