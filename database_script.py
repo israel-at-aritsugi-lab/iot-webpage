@@ -117,6 +117,15 @@ class Database:
             return 'orange'
         else:
             return 'yellow'
+        
+
+    def get_device_sensors(self,device_id):
+        print(f"Device id:{device_id}")
+        sensors_for_device = [data for data in self.get_all_sensor_data() if data.sensor_uid.startswith(device_id)]
+        print(f"sensors for device {device_id}:{sensors_for_device}")
+        return sensors_for_device
+        
+
 
 
 

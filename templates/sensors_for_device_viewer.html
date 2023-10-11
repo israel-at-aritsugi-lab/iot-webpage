@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Device Sensors </title>  
+    <style> 
+        .content-table{
+            border-collapse:collapse;
+            margin:50px 0;
+            font-size:1.5em;
+            min-width:800px;
+            border-radius:5px 5px 0 0;
+            overflow:hidden;
+            box-shadow:0 0 20px rgba(0, 0, 0, 0.15)
+        }
+
+        .content-table thead tr{
+            background-color:rgb(50, 203, 139);
+            color:aliceblue;
+            text-align:left;
+            font-weight:bold;
+        }
+
+        .content-table th,
+        .content-table td{
+            padding:12px 15px;
+        }
+
+        .content-table tbody tr{
+            border-bottom:thin solid #dddddd;
+        }
+
+        .content-table tbody tr:nth-of-type(even){
+            background-color:aliceblue;
+        }
+
+        .content-table tbody tr:last-of-type{
+            border-bottom:2px solid aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <h1>List of Device Sensors</h1>
+    {% if sensor_info %}
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th>Sensor UID</th>
+                <th>Value</th>
+                <th>Latest Timestamp</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in sensor_info %}
+            <tr>
+                <td><a href="/iot/all/{{data.sensor_uid}}" >{{ data.sensor_uid }}</a></td>
+                <td>{{ data.value }}</td>
+                <td>{{ data.latest_timestamp }}</td> 
+                <td>{{ data.status}}</td> 
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No data available.</p> 
+    {% endif %}
+</body>
+</html>

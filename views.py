@@ -100,6 +100,52 @@ def display_devices():
 
 
 #display list of sensors of the specific device
-#@views.route('/device_sensor/<string:device_id>')
+@views.route('/devices/<string:device_id>')
+def display_sensors_for_devices(device_id):
+    db=Database(db_instance)
+    #all_sensor_data=db.get_all_sensor_data()
+    sensors_for_device = db.get_device_sensors(device_id)
 
-   
+    sensor_info=[]
+    for sensor_data in sensors_for_device:
+        if sensor_data is None or sensor_data =="NOt Working Well !!!":
+            print(f"Skippping non-object value: {sensor_data}")
+            continue
+
+        #print(f"sensor type: {type(sensor_data)}")
+        if isinstance(sensor_data, sensorData):
+        #if sensor_data:
+            status=db.check_sensor_status(sensor_data.sensor_uid)
+            sensor_info.append({
+                'sensor_uid': sensor_data.sensor_uid,
+                'value': sensor_data.value,
+                'latest_timestamp': sensor_data.timestamp,
+                'status': status
+            })
+
+        else:
+            print(f"skipping non-object value: {sensor_data}")
+            #print(f"No data found for device {device_id}")
+
+
+    context = {
+        'device_id': device_id,
+        'sensor_info': sensor_info,
+    }
+
+    print(f"device id: {device_id}")
+    print(f"sensor info:{sensor_info}")
+
+    return render_template('sensors_for_device_viewer.html', **context)
+
+    # sensor_uids_by_device={}
+    # for data in all_sensor_data:
+    #     #device_id=data.sensor_uid[:3]
+    #     if device_id not in sensor_uids_by_device:
+    #         sensor_uids_by_device[device_id]=[]
+    #     sensor_uids_by_device[device_id].append(data.sensor_uid)
+
+    # for sensor_uids in sensor_uids_by_device.items():
+    #     sensor_list=db.get_device_sensors(sensor_uids)
+
+    # sensors_for_device=[data for data in all_sensor_data if data.sensor_uid.startswith(device.id)]

@@ -24,8 +24,8 @@
         <tbody>
             {% for data in device_info %}
             <tr>
-                <!-- <td><a href="/iot/device_sensor/{{data.device_id}}" >{{ data.device_id }}</a></td> -->
-                <td>{{ data.device_id }}</td>
+                <td><a href="/iot/devices/{{data.device_id}}" >{{ data.device_id }}</a></td>
+                <!-- <td>{{ data.device_id }}</td> -->
                 <td>{{ data.latest_timestamps }}</td>
                 <td>
                     <div class="circle 
