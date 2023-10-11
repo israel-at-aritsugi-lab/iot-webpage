@@ -7,7 +7,7 @@ To create webpage using frontend (CSS + JS + HTML) and backend (Python + mongoen
 
 
 ### Folder Structure
-frontend
+[frontend]
 
 **static:** Mainly focus on the CSS and JavaScript.
 
@@ -17,7 +17,7 @@ frontend
 - **sensor_data_viewer:** display all the data for the specific sensor.
 - **sensors_for_device_viewer:** display the list of sensors for the specific device with the latest data.
 
-backend
+[backend]
 - **insert_data:** Insert data and send to the server.
 - **store_data:** To retrieve data and store data. (server)
 - **database_script:** Import the database from store_data.
