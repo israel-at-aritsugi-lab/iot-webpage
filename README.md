@@ -8,7 +8,7 @@ To create webpage using frontend (CSS + JS + HTML) and backend (Python + mongoen
 
 ### Folder Structure
 frontend
-- **static:** Mainly focus on the CSS and JavaScript.
+**static:** Mainly focus on the CSS and JavaScript.
 
 **templates:** Mainly focus on the HTML.
 - **device_viewer:** display the list of devices with the latest data.
