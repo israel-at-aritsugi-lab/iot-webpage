@@ -104,9 +104,9 @@ def display_sensors_for_devices(device_id):
 
     sensor_info=[]
     for sensor_data in sensors_for_device:
-        if sensor_data is None or sensor_data =="NOt Working Well !!!":
-            print(f"Skippping non-object value: {sensor_data}")
-            continue
+        # if sensor_data is None or sensor_data =="Not Working Well !!!":
+        #     print(f"Skippping non-object value: {sensor_data}")
+        #     continue
 
         if isinstance(sensor_data, sensorData):
             status=db.check_sensor_status(sensor_data.sensor_uid)
@@ -119,8 +119,6 @@ def display_sensors_for_devices(device_id):
 
         else:
             print(f"skipping non-object value: {sensor_data}")
-            #print(f"No data found for device {device_id}")
-
 
     context = {
         'device_id': device_id,
