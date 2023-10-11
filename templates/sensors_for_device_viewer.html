@@ -39,10 +39,27 @@
         .content-table tbody tr:last-of-type{
             border-bottom:2px solid aquamarine;
         }
+
+        .previous{
+            display:inline-block;
+            padding:10px 20px;
+            background-color:#77a077;
+            color:rgb(26, 11, 11);
+            border-radius:5px;
+            text-decoration:none;
+            transition:transoform 0.2s, box-shadow 0.2s;
+        }
+
+        .previous{
+            position:absolute;
+            top:20px;
+            right:100px;
+        }
     </style>
 </head>
 <body>
     <h1>List of Device Sensors</h1>
+    <a href="/iot/devices" class="previous">&laquo; Previous</a>
     {% if sensor_info %}
     <table class="content-table">
         <thead>

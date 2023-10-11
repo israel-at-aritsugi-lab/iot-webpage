@@ -32,10 +32,27 @@ h1 {
     font-size: 12px;
     color: #777;
 }
-.back-button{
+
+/* .back-button{
     position: fixed;
     bottom: 20px;
     right: 30px;
     font-size: 20px;
     
+} */
+
+.previous{
+    display:inline-block;
+    padding:10px 20px;
+    background-color:#77a077;
+    color:rgb(26, 11, 11);
+    border-radius:5px;
+    text-decoration:none;
+    transition:transoform 0.2s, box-shadow 0.2s;
+}
+
+.previous{
+    position:absolute;
+    top:20px;
+    right:100px;
 }
