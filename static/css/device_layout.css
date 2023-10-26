@@ -1,11 +1,12 @@
 .content-table{
     border-collapse:collapse;
-    margin:50px 0;
+    width:100%;
+    margin:0;
     font-size:1.5em;
-    min-width:800px;
     border-radius:5px 5px 0 0;
     overflow:hidden;
-    box-shadow:0 0 20px rgba(0, 0, 0, 0.15)
+    box-shadow:0 0 20px rgba(0, 0, 0, 0.15);
+    position: relative;
 }
 
 .content-table thead tr{
@@ -18,7 +19,9 @@
 .content-table th,
 .content-table td{
     padding:12px 15px;
+    text-align: left;
 }
+
 
 .content-table tbody tr{
     border-bottom:thin solid #dddddd;
@@ -33,11 +36,11 @@
 }
 
 .circle{
-    width:20px;
-    height: 20px;
+    width:40px;
+    height: 40px;
     border-radius: 50%;
     display: inline-block;
-    margin-right: 5px;
+    margin-right: 50px;
 }
 
 .circle.green{
@@ -64,7 +67,7 @@
 .animated-button{
     position:absolute;
     top:30px;
-    right:600px;
+    right:50px;
 }
 
 .animated-button{

@@ -12,6 +12,8 @@
 <body>
     <h1>&#127807; All Data For Specific Sensor &#127807;</h1>
     <a href="/iot" class="previous">&laquo; Previous</a>
+    <!-- <a href="{{ url_for('views.display_sensors_for_devices', device_id=device_id) }}" class="previous">&laquo; Previous</a> -->
+
     {% if all_sensor_data %} 
         {% for data in all_sensor_data %}
             <div class="data-entry">

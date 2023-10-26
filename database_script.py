@@ -34,13 +34,14 @@ class Database:
          return sensor_data
 
     def get_all_data_for_sensor(self,sensor_uid):  
-         all_data_for_sensor=sensorData.objects(sensor_uid=sensor_uid).order_by('-timestamp')
-         return all_data_for_sensor
+         return sensorData.objects(sensor_uid=sensor_uid).order_by('-timestamp')
+        #  all_data_for_sensor=sensorData.objects(sensor_uid=sensor_uid).order_by('-timestamp')
+        #  return all_data_for_sensor
 
     def check_sensor_status(self, sensor_uid, max_days_no_data=1.5):
         latest_data = self.get_sensor_data_by_uid(sensor_uid)
 
-        if latest_data:
+        if latest_data is not None:
             current_time = datetime.now()
             if (current_time - latest_data.timestamp).days > max_days_no_data:
                 status = 'Not Working Well !!!'
