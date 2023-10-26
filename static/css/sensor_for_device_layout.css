@@ -2,9 +2,7 @@
     border-collapse:collapse;
     width:100%;
     margin:0;
-    /* margin:50px 0; */
     font-size:1.5em;
-    /* min-width:800px; */
     border-radius:5px 5px 0 0;
     overflow:hidden;
     box-shadow:0 0 20px rgba(0, 0, 0, 0.15)
@@ -27,7 +25,7 @@
 }
 
 .content-table tbody tr:nth-of-type(even){
-    background-color:aliceblue;
+    background-color:rgb(170, 237, 199);
 }
 
 .content-table tbody tr:last-of-type{
