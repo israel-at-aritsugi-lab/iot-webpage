@@ -35,6 +35,16 @@
     border-bottom:2px solid aquamarine;
 }
 
+.legend-table{
+    margin-top: 50px;
+    border-collapse:collapse;
+    font-size:1.0em;
+    border-radius:5px 5px 0 0;
+    overflow:hidden;
+    box-shadow:0 0 20px rgba(159, 225, 141, 0.15);
+    position: relative;
+}
+
 .circle{
     width:40px;
     height: 40px;
