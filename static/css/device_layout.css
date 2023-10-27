@@ -22,7 +22,6 @@
     text-align: left;
 }
 
-
 .content-table tbody tr{
     border-bottom:thin solid #dddddd;
 }
@@ -47,7 +46,7 @@
 
 .legend-table th,
 .legend-table td{
-    padding:5px 5px;
+    padding:3px 5px;
     text-align: left;
 }
 
