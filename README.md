@@ -26,7 +26,7 @@ db.createUser(
 
 #### Run the code to add dummy data in the DB
 ```
-python3 insert_data.py
+python3 populate_db_dummy_data.py
 ```
 
 ### How to run the code
@@ -47,9 +47,9 @@ python app.py
 - **sensors_for_device_viewer:** display the list of sensors for the specific device with the latest data.
 
 [backend]
-- **insert_data:** Insert data and send to the server.
+- **populate_db_dummy_data:** Insert dummy data in the database.
 - **store_data:** To retrieve data and store data. (server)
 - **import_data:** Import the database from store_data.
 - **views:** Import from the database_script and store_data, connect server and the frontend.
-- **app:** Main file to run everything.
+- **app:** Main file to run the backend server.
 
