@@ -11,7 +11,9 @@ class database():
         self.database = mongoengine
 
     def connect(self):
-        self.connection = self.database.connect(self.db, host=self.host, port=self.port, username=self.username, password=self.password)
+        self.connection = self.database.connect(self.db, host=self.host, port=self.port,
+                                                 username=self.username, password=self.password,
+                                                 authentication_source=self.db)
 
     def disconnect(self):
         if self.connection:

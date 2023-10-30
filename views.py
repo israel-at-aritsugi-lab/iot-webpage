@@ -2,8 +2,8 @@ from flask import Blueprint, render_template
 
 import json 
 import sys
-sys.path.append("/Users/angeline/workspace/rice-iot-main/")  
-from webpage.import_data import Database, sensorData 
+
+from import_data import Database, sensorData 
 from store_data import database  
 from datetime import date, datetime 
 

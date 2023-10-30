@@ -2,9 +2,38 @@
 This project aims to create the user interface for displaying the data.
 
 
-### Project Guidelines
+## Project Guidelines
 To create webpage using frontend (CSS + JS + HTML) and backend (Python + mongoengine).
 
+## Pre-requisites
+- You need to have mongodb installed and have the database populated.
+- You need to install the required python packages. To do so run `pip3 install -r requirements.txt`
+
+### Populating the Database
+To populate the database, you need to start mongodb, and then run the following code **inside the mongosh shell**:
+
+#### Create a user (limited to the database)
+```
+use my_db
+db.createUser(
+  {
+    user: "angeline",
+    pwd:  "0000", 
+    roles: [ { role: "readWrite", db: "my_db" } ]
+  }
+)
+```
+
+#### Run the code to add dummy data in the DB
+```
+python3 insert_data.py
+```
+
+### How to run the code
+In the main folder run:
+```
+python app.py
+```
 
 ### Folder Structure
 [frontend]
