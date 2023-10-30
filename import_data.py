@@ -35,9 +35,7 @@ class Database:
 
     def get_all_data_for_sensor(self,sensor_uid):  
          return sensorData.objects(sensor_uid=sensor_uid).order_by('-timestamp')
-        #  all_data_for_sensor=sensorData.objects(sensor_uid=sensor_uid).order_by('-timestamp')
-        #  return all_data_for_sensor
-
+        
     def check_sensor_status(self, sensor_uid, max_days_no_data=1.5):
         latest_data = self.get_sensor_data_by_uid(sensor_uid)
 

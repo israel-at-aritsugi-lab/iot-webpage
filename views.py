@@ -7,6 +7,8 @@ from import_data import Database, sensorData
 from store_data import database  
 from datetime import date, datetime 
 
+import time
+
 
 db_instance = database(host="127.0.0.1", port=27017, username="angeline", password="0000", db="my_db")  
 db_instance.connect()  
@@ -29,6 +31,7 @@ def datetime_serializer(obj):
     
 @views.route('/')
 def index():
+    start = time.time()
     db = Database(db_instance)
     all_sensor_data = db.get_all_sensor_data()
     
@@ -40,7 +43,8 @@ def index():
         sensor_status[sensor_uid] = status
 
     all_sensor_data_json = json.dumps(all_sensor_data, default=datetime_serializer)
-    
+    end = time.time()
+    print(f"All data loaded in {end-start} ms")
     
     return render_template('latest_sensor_reading.html', all_sensor_data=all_sensor_data, sensor_status=sensor_status,all_sensor_data_json=all_sensor_data_json)
 
