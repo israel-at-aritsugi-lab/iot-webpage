@@ -20,7 +20,7 @@ To create webpage using frontend (CSS + JS + HTML) and backend (Python + mongoen
 [backend]
 - **insert_data:** Insert data and send to the server.
 - **store_data:** To retrieve data and store data. (server)
-- **database_script:** Import the database from store_data.
+- **import_data:** Import the database from store_data.
 - **views:** Import from the database_script and store_data, connect server and the frontend.
 - **app:** Main file to run everything.
 
