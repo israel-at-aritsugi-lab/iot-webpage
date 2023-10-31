@@ -24,7 +24,7 @@ def generate_dummy_data(num_entries):
     for x in range(num_entries):        
         random_sensor_uid=random.choice(random.choice(ranges))  #random element in a given range
         random_value=round(random.uniform(0,99),2)   #float in a given range
-        random_timestamp=datetime.datetime(2023,10,random.randint(1,29),random.randint(0,23),random.randint(0,59),random.randint(0,59))  #int in a given range
+        random_timestamp=datetime.datetime(2023,10,random.randint(1,30),random.randint(0,23),random.randint(0,59),random.randint(0,59))  #int in a given range
         data_insert.append(sensorData(sensor_uid=str(random_sensor_uid), value=random_value, timestamp=random_timestamp))
 
     return data_insert
