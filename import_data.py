@@ -59,14 +59,10 @@ class Database:
         else:
             is_working_well = False
 
-        # if is_working_well!=False:
-        #     status='OK'
-        # else:
-        #     status='Not Working Well !!!'
         status={True:'OK',False:'Not Working Well !!!'}[is_working_well]
         return status
     
-    
+
     def aggregate_sensor_data(self,device_id):
         aggregated_data = {}
         distinct_sensor_uids = sensorData.objects().distinct("sensor_uid")
@@ -85,7 +81,6 @@ class Database:
 
         return aggregated_data
     
-
 
     def get_latest_timestamps(self, aggregated_data):
         latest_timestamps = {}  

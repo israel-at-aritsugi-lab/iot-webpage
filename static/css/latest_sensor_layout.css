@@ -64,3 +64,8 @@ tr:nth-child(even){
     top:20px;
     right:100px;
 }
+
+.previous:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 10px rgba(33, 241, 6, 0.5);
+}
