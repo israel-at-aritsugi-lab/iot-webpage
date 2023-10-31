@@ -36,19 +36,36 @@ class Database:
     def get_all_data_for_sensor(self,sensor_uid):  
          return sensorData.objects(sensor_uid=sensor_uid).order_by('-timestamp')
         
+    # def check_sensor_status(self, sensor_uid, max_days_no_data=1.5):
+    #     latest_data = self.get_sensor_data_by_uid(sensor_uid)
+
+    #     if latest_data is not None:
+    #         current_time = datetime.now()
+    #         if (current_time - latest_data.timestamp).days > max_days_no_data:
+    #             status = 'Not Working Well !!!'
+    #         else:
+    #             status = 'OK'
+    #     else:
+    #         status = 'Not Working Well !!!'
+
+    #     return status
+    
     def check_sensor_status(self, sensor_uid, max_days_no_data=1.5):
         latest_data = self.get_sensor_data_by_uid(sensor_uid)
 
         if latest_data is not None:
             current_time = datetime.now()
-            if (current_time - latest_data.timestamp).days > max_days_no_data:
-                status = 'Not Working Well !!!'
-            else:
-                status = 'OK'
+            is_working_well=(current_time - latest_data.timestamp).days <= max_days_no_data
         else:
-            status = 'Not Working Well !!!'
+            is_working_well = False
 
+        if is_working_well!=False:
+            status='OK'
+        else:
+            status='Not Working Well !!!'
+        
         return status
+
     
 
     def aggregate_sensor_data(self,device_id):

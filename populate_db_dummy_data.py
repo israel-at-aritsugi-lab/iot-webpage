@@ -39,8 +39,8 @@ if __name__ == "__main__":
 
     clean_database()
 
-    number_entries = 900000
-    bulk_size = 1000
+    number_entries = 900
+    bulk_size = 100
     # number_entries = 90
     parts = int(number_entries / bulk_size)
     remaining_parts = number_entries % bulk_size
