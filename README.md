@@ -53,4 +53,3 @@ python app.py
 - **views:** Import from the database_script and store_data, connect server and the frontend.
 - **app:** Main file to run the backend server.
 
-hello
