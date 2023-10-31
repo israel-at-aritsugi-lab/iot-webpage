@@ -11,13 +11,13 @@
 </head>
 <body>
     <h1>All Data For Specific Sensor </h1>
-    <a href="/iot/all_latest_data" class="previous">&laquo; Previous</a>
+    <a href="/all_latest_data" class="previous">&laquo; Previous</a>
     <!-- <a href="{{ url_for('views.display_sensors_for_devices', device_id=device_id) }}" class="previous">&laquo; Previous</a> -->
 
     {% if all_sensor_data %} 
         {% for data in all_sensor_data %}
             <div class="data-entry">
-                <p class="sensor-uid"><a href="/iot/all/{{data.sensor_uid}}">{{ data.sensor_uid }}</a></p>
+                <p class="sensor-uid"><a href="/all/{{data.sensor_uid}}">{{ data.sensor_uid }}</a></p>
                 <p class="value">{{ data.value }}</p>
                 <p class="timestamp">{{ data.timestamp }}</p>
             </div>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IoT Homepage </title>
+    <title>IoT All Latest </title>
 
     <link rel="stylesheet" type="text/css" href="{{url_for(request.blueprint+'.static', filename='css/latest_sensor_layout.css') }}" />
 
@@ -16,7 +16,7 @@
 </head>
 <body>
     <h1>Latest Data For All Sensors </h1>
-    <a href="/iot" class="previous">&laquo; Previous</a>
+    <a href="/" class="previous">&laquo; Previous</a>
     {% if all_sensor_data %}
     <table>
         <thead>
@@ -31,7 +31,7 @@
         <tbody>
             {% for data in all_sensor_data %}
             <tr>
-                <td><a href="/iot/all/{{data.sensor_uid}}" >{{ data.sensor_uid }}</a></td>
+                <td><a href="/all/{{data.sensor_uid}}" >{{ data.sensor_uid }}</a></td>
                 <td>{{ data.value }}</td>
                 <td>{{ data.timestamp }}</td> 
                 <td>{{ sensor_status[data.sensor_uid] }}</td> 
