@@ -29,7 +29,7 @@ def datetime_serializer(obj):
     raise TypeError(f"Type {type(obj)} not serializable")
 
     
-@views.route('/')
+@views.route('/all_latest_data')
 def index():
     start = time.time()
     db = Database(db_instance)
@@ -67,7 +67,7 @@ def display_all_data(sensor_uid):
 
 
 #display all the devices
-@views.route('/devices')
+@views.route('/')
 def display_devices():
     db=Database(db_instance)
     all_sensor_data=db.get_all_sensor_data()
