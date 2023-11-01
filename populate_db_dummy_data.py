@@ -30,8 +30,15 @@ def generate_dummy_data(num_entries):
     return data_insert
     
 
-def insert_dummy_data(db_instance,data_insert):
-    db_instance.insert(data_insert)
+# 0.14 seconds (insert one by one - pyMongo)
+# def insert_dummy_data(db_instance,data_insert):  
+#     db_instance.insert(data_insert)
+
+
+# 0.12 seconds (input multiple rows of data by using bulk insert - mongoengine)
+def insert_dummy_data(db_instance, data_insert):
+    sensorData.objects.insert(data_insert)
+
 
 if __name__ == "__main__":
     db_instance = database(host= "127.0.0.1", port=27017, username= "angeline", password= "0000",db= "my_db")
@@ -39,7 +46,7 @@ if __name__ == "__main__":
 
     clean_database()
 
-    number_entries = 900
+    number_entries = 90000
     bulk_size = 100
     # number_entries = 90
     parts = int(number_entries / bulk_size)
