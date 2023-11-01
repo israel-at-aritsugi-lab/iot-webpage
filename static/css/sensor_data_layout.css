@@ -95,3 +95,7 @@ tr:nth-child(even){
     transform:scale(1.1);
     box-shadow:0 0 10px rgba(33, 241, 6, 0.5);
 }
+
+.sensor-uid{
+    color:rgb(221, 14, 193);
+}
