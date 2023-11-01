@@ -1,4 +1,4 @@
-body {
+/* body {
     font-family: Arial, sans-serif;
     background-color: #f3f3f3;
     margin: 10;
@@ -33,6 +33,46 @@ h1 {
 .timestamp {
     font-size: 15px;
     color: #777;
+} */
+
+table{
+    border-collapse:collapse;
+    width: 100%;
+    margin: 0;
+    font-size:1.5em;
+    border-radius:5px 5px 0 0;
+    overflow:hidden;
+    box-shadow:0 0 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+table thead tr{
+    background-color:rgb(83, 86, 85);
+    color:aliceblue;
+    text-align:left;
+    font-weight:bold;
+}
+
+table th,
+table td{
+    padding:12px 15px;
+    text-align: left;
+}
+
+table tbody tr{
+    border-bottom:thin solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even){
+    background-color:rgb(199, 205, 194);
+}
+
+table tbody tr:last-of-type{
+    border-bottom:2px solid aquamarine;
+}
+
+tr:nth-child(even){
+    background-color:#69b599;
 }
 
 .previous{
