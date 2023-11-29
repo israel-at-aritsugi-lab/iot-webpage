@@ -1,15 +1,16 @@
-from store_data import database
-import mongoengine
+from store_data import database,sensorData
+#import mongoengine
 from datetime import datetime
 
-class sensorData(mongoengine.Document):
-    sensor_uid = mongoengine.StringField()
-    value = mongoengine.FloatField()
-    timestamp = mongoengine.DateTimeField()
+# class sensorData(mongoengine.Document):
+#     sensor_uid = mongoengine.StringField()
+#     value = mongoengine.FloatField()
+#     timestamp = mongoengine.DateTimeField()
 
 def retrieve_dummy_data(db): 
-    data_retrieved = db.find()
-    for data in data_retrieved:
+    for data in db.retrieve_dummy_data():
+    #data_retrieved = db.find()
+    #for data in data_retrieved:
         print("uid:", data.sensor_uid)
         print("value:", data.value)
         print("timestamp:", data.timestamp)
@@ -70,12 +71,13 @@ class Database:
         for sensor_uid in distinct_sensor_uids:
             #device_id = "Device " + sensor_uid[:3]  # Assuming the first 3 characters are common for each device
             if sensor_uid.startswith(device_id):
-                sensor_data = self.get_all_data_for_sensor(sensor_uid)
+                aggregated_data.setdefault(device_id, []).extend(self.get_all_data_for_sensor(sensor_uid))
+                # sensor_data = self.get_all_data_for_sensor(sensor_uid)
                 
-                if device_id not in aggregated_data:
-                    aggregated_data[device_id] = []
+                # if device_id not in aggregated_data:
+                #     aggregated_data[device_id] = []
                 
-                aggregated_data[device_id].extend(sensor_data)
+                # aggregated_data[device_id].extend(sensor_data)
         
         print("aggregated data:",aggregated_data)
 

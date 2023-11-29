@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 
 import json 
-import sys
+#import sys
 
 from import_data import Database, sensorData 
 from store_data import database  
@@ -15,6 +15,8 @@ db_instance.connect()
 
 views = Blueprint(__name__, "views",
                   static_folder='static')
+
+db=Database(db_instance)
 
 #convert datetime.datetime & datetime.date objects to strings
 def datetime_serializer(obj):
@@ -30,9 +32,9 @@ def datetime_serializer(obj):
 
     
 @views.route('/all_latest_data')
-def index():
+def display_all_latest_data():
     start = time.time()
-    db = Database(db_instance)
+    # db = Database(db_instance)
     all_sensor_data = db.get_all_sensor_data()
     
     sensor_status = {}  # Create a dictionary to store sensor statuses
@@ -61,7 +63,7 @@ def display_sensor_data(sensor_uid):
 #display all data for specifc sensor
 @views.route('/all/<string:sensor_uid>')  
 def display_all_data(sensor_uid):
-    db=Database(db_instance)
+    # db=Database(db_instance)
     all_data_for_sensor=db.get_all_data_for_sensor(sensor_uid)
     return render_template('sensor_data_viewer.html',all_sensor_data=all_data_for_sensor)
 
@@ -69,7 +71,7 @@ def display_all_data(sensor_uid):
 #display all the devices
 @views.route('/')
 def display_devices():
-    db=Database(db_instance)
+    # db=Database(db_instance)
     all_sensor_data=db.get_all_sensor_data()
 
     sensor_uids_by_device={}
@@ -103,7 +105,7 @@ def display_devices():
 #display list of sensors of the specific device
 @views.route('/devices/<string:device_id>')
 def display_sensors_for_devices(device_id):
-    db=Database(db_instance)
+    # db=Database(db_instance)
     sensors_for_device = db.get_device_sensors(device_id)
 
     sensor_info=[]

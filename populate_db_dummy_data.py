@@ -1,12 +1,12 @@
-from store_data import database
+from store_data import database,sensorData
 import mongoengine
 import datetime
 import random
 
-class sensorData(mongoengine.Document):
-    sensor_uid = mongoengine.StringField()
-    value = mongoengine.FloatField()
-    timestamp = mongoengine.DateTimeField()
+# class sensorData(mongoengine.Document):
+#     sensor_uid = mongoengine.StringField()
+#     value = mongoengine.FloatField()
+#     timestamp = mongoengine.DateTimeField()
 
 #to keep the data updated
 def clean_database():
@@ -24,7 +24,7 @@ def generate_dummy_data(num_entries):
     for x in range(num_entries):        
         random_sensor_uid=random.choice(random.choice(ranges))  #random element in a given range
         random_value=round(random.uniform(0,99),2)   #float in a given range
-        random_timestamp=datetime.datetime(2023,11,random.randint(1,12),random.randint(0,23),random.randint(0,59),random.randint(0,59))  #int in a given range
+        random_timestamp=datetime.datetime(2023,11,random.randint(1,27),random.randint(0,23),random.randint(0,59),random.randint(0,59))  #int in a given range
         data_insert.append(sensorData(sensor_uid=str(random_sensor_uid), value=random_value, timestamp=random_timestamp))
 
     return data_insert
@@ -48,7 +48,6 @@ if __name__ == "__main__":
 
     number_entries = 90000
     bulk_size = 100
-    # number_entries = 90
     parts = int(number_entries / bulk_size)
     remaining_parts = number_entries % bulk_size
 
